@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Paper workspace — cool sage ground, deep forest ink. No purple. */
+    --background: 90 12% 97%;
+    --foreground: 150 22% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 150 22% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 22% 12%;
+    --primary: 160 48% 24%;
+    --primary-foreground: 80 20% 98%;
+    --secondary: 100 14% 92%;
+    --secondary-foreground: 150 20% 18%;
+    --muted: 95 12% 93%;
+    --muted-foreground: 150 8% 42%;
+    --accent: 42 55% 48%;
+    --accent-foreground: 40 30% 12%;
+    --destructive: 4 68% 48%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 110 10% 86%;
+    --input: 110 10% 86%;
+    --ring: 160 48% 24%;
+    --radius: 0.625rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 100% 0%, hsl(160 30% 88% / 0.45), transparent 55%),
+      radial-gradient(ellipse 60% 40% at 0% 100%, hsl(42 40% 90% / 0.35), transparent 50%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3 {
+    @apply font-display tracking-tight;
+  }
+}

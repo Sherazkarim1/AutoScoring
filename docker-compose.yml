@@ -1,0 +1,49 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-autoscoring}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-autoscoring}
+      POSTGRES_DB: ${POSTGRES_DB:-autoscoring}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-autoscoring}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-autoscoring}:${POSTGRES_PASSWORD:-autoscoring}@db:5432/${POSTGRES_DB:-autoscoring}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173,http://localhost:3000}
+      SECRET_KEY: ${SECRET_KEY:-fyp-autoscoring-secret-change-in-production}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - model_cache:/root/.cache/huggingface
+      - uploads_data:/app/uploads
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: ${PUBLIC_API_URL:-http://localhost:8000/api}
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  model_cache:
+  uploads_data:
