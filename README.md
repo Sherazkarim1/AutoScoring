@@ -139,8 +139,3 @@ python evaluate.py data/evaluation/sample_eval.csv --output reports/eval_report.
 | **RMSE** | Root Mean Squared Error |
 | **Within ±1 / ±2** | % of scores within tolerance of human score |
 
-## Project Team
-
-- Sheraz Karim (2262) — NLP model, backend API
-- Liliyom (2249) — Dataset, frontend, report
-- Supervisor: Imran
