@@ -49,6 +49,24 @@ export interface OCRPreview {
   source_filename: string;
   source_file_url?: string | null;
   ocr_quality: string;
+  ocr_engine?: string;
+}
+
+export interface GeneratedQuestionDraft {
+  title: string;
+  question_text: string;
+  model_answer: string;
+  marking_rubric: string;
+  key_concepts: string[];
+  max_score: number;
+  subject: string;
+}
+
+export interface PaperIngest {
+  ocr: OCRPreview;
+  generation_source: 'llm' | 'heuristic' | string;
+  warning?: string | null;
+  questions: GeneratedQuestionDraft[];
 }
 
 export interface Question {
@@ -57,6 +75,10 @@ export interface Question {
   title: string;
   question_text: string;
   model_answer: string;
+  marking_rubric?: string | null;
+  key_concepts?: string[];
+  source_filename?: string | null;
+  generation_source?: string;
   max_score: number;
   subject: string;
   created_at: string;

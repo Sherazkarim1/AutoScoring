@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile, status
+from fastapi import APIRouter, Depends, File, Form, HTTPException, Query, UploadFile, status
 from sqlalchemy.orm import Session
 
 from app.auth import get_current_instructor
@@ -6,10 +6,13 @@ from app.config import settings
 from app.database import get_db
 from app.models import Instructor, Question, Submission
 from app.schemas import (
+    BulkQuestionCreate,
     DetailedReportOut,
+    GeneratedQuestionDraft,
     OCRLineOut,
     OCRPageOut,
     OCRPreviewResponse,
+    PaperIngestResponse,
     QuestionCreate,
     QuestionOut,
     QuestionUpdate,
@@ -18,26 +21,13 @@ from app.schemas import (
     SubmissionCreate,
     SubmissionOut,
 )
+from app.services.generation import generate_from_ocr
 from app.services.ocr import get_ocr_service
 from app.services.scoring import get_scoring_service
+from app.utils.questions import dump_key_concepts, parse_key_concepts, question_to_out
 from app.utils.submissions import submission_to_out, _file_url
 
 router = APIRouter(prefix="/questions", tags=["Questions"])
-
-
-def _question_to_out(question: Question, db: Session) -> QuestionOut:
-    count = db.query(Submission).filter(Submission.question_id == question.id).count()
-    return QuestionOut(
-        id=question.id,
-        instructor_id=question.instructor_id,
-        title=question.title,
-        question_text=question.question_text,
-        model_answer=question.model_answer,
-        max_score=question.max_score,
-        subject=question.subject,
-        created_at=question.created_at,
-        submission_count=count,
-    )
 
 
 def _get_owned_question(question_id: int, instructor_id: int, db: Session) -> Question:
@@ -70,6 +60,57 @@ def _ocr_quality_label(confidence: float) -> str:
     return "Low — please verify extracted text against the paper"
 
 
+def _ocr_to_preview(ocr_result) -> OCRPreviewResponse:
+    pages = [
+        OCRPageOut(
+            page_number=page.page_number,
+            text=page.text,
+            confidence=page.confidence,
+            lines=[OCRLineOut(text=line.text, confidence=line.confidence) for line in page.lines],
+            preview_url=_file_url(page.preview_filename),
+        )
+        for page in ocr_result.pages
+    ]
+    return OCRPreviewResponse(
+        full_text=ocr_result.full_text,
+        average_confidence=ocr_result.average_confidence,
+        word_count=ocr_result.word_count,
+        page_count=ocr_result.page_count,
+        pages=pages,
+        low_confidence_words=ocr_result.low_confidence_words,
+        file_type=ocr_result.file_type,
+        source_filename=ocr_result.source_filename,
+        source_file_url=_file_url(ocr_result.stored_path),
+        ocr_quality=_ocr_quality_label(ocr_result.average_confidence),
+        ocr_engine=getattr(ocr_result, "ocr_engine", "easyocr"),
+    )
+
+
+def _create_question_row(
+    instructor_id: int,
+    payload: QuestionCreate,
+    db: Session,
+) -> Question:
+    question = Question(
+        instructor_id=instructor_id,
+        title=payload.title,
+        question_text=payload.question_text,
+        model_answer=payload.model_answer,
+        marking_rubric=payload.marking_rubric,
+        key_concepts=dump_key_concepts(payload.key_concepts),
+        max_score=payload.max_score,
+        subject=payload.subject,
+        generation_source=payload.generation_source or "manual",
+        source_filename=payload.source_filename,
+        source_file_path=payload.source_file_path,
+        ocr_raw_text=payload.ocr_raw_text,
+    )
+    db.add(question)
+    db.commit()
+    db.refresh(question)
+    return question
+
+
 @router.get("", response_model=list[QuestionOut])
 def list_questions(
     current: Instructor = Depends(get_current_instructor),
@@ -81,7 +122,7 @@ def list_questions(
         .order_by(Question.created_at.desc())
         .all()
     )
-    return [_question_to_out(q, db) for q in questions]
+    return [question_to_out(q, db) for q in questions]
 
 
 @router.post("", response_model=QuestionOut, status_code=status.HTTP_201_CREATED)
@@ -90,18 +131,88 @@ def create_question(
     current: Instructor = Depends(get_current_instructor),
     db: Session = Depends(get_db),
 ):
-    question = Question(
-        instructor_id=current.id,
-        title=payload.title,
-        question_text=payload.question_text,
-        model_answer=payload.model_answer,
-        max_score=payload.max_score,
-        subject=payload.subject,
+    question = _create_question_row(current.id, payload, db)
+    return question_to_out(question, db)
+
+
+@router.post("/ingest-paper", response_model=PaperIngestResponse)
+async def ingest_question_paper(
+    file: UploadFile = File(...),
+    subject: str = Form(default="General"),
+    current: Instructor = Depends(get_current_instructor),
+):
+    content = await file.read()
+    _validate_upload(file, content)
+    try:
+        ocr_result = get_ocr_service().extract_from_file(
+            content,
+            file.filename,
+            store_file=True,
+            engine=settings.question_ocr_engine,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    if len((ocr_result.full_text or "").strip()) < 12:
+        raise HTTPException(
+            status_code=400,
+            detail="Could not extract enough text from the question paper. Try a clearer scan.",
+        )
+
+    try:
+        generated = generate_from_ocr(ocr_result.full_text, subject=subject or "General")
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    drafts = [
+        GeneratedQuestionDraft(
+            title=item.title,
+            question_text=item.question_text,
+            model_answer=item.model_answer,
+            marking_rubric=item.marking_rubric,
+            key_concepts=item.key_concepts,
+            max_score=item.max_score,
+            subject=item.subject or subject or "General",
+        )
+        for item in generated.questions
+    ]
+    return PaperIngestResponse(
+        ocr=_ocr_to_preview(ocr_result),
+        generation_source=generated.source,
+        warning=generated.warning,
+        questions=drafts,
     )
-    db.add(question)
-    db.commit()
-    db.refresh(question)
-    return _question_to_out(question, db)
+
+
+@router.post("/bulk", response_model=list[QuestionOut], status_code=status.HTTP_201_CREATED)
+def bulk_create_questions(
+    payload: BulkQuestionCreate,
+    current: Instructor = Depends(get_current_instructor),
+    db: Session = Depends(get_db),
+):
+    if not payload.questions:
+        raise HTTPException(status_code=400, detail="No questions to save")
+    created: list[QuestionOut] = []
+    for draft in payload.questions:
+        row = _create_question_row(
+            current.id,
+            QuestionCreate(
+                title=draft.title,
+                question_text=draft.question_text,
+                model_answer=draft.model_answer,
+                marking_rubric=draft.marking_rubric,
+                key_concepts=draft.key_concepts,
+                max_score=draft.max_score,
+                subject=draft.subject or payload.subject,
+                generation_source=payload.generation_source,
+                source_filename=payload.source_filename,
+                source_file_path=payload.source_file_path,
+                ocr_raw_text=payload.ocr_raw_text,
+            ),
+            db,
+        )
+        created.append(question_to_out(row, db))
+    return created
 
 
 @router.post("/preview-score", response_model=ScorePreviewResponse)
@@ -130,39 +241,23 @@ async def preview_paper_ocr(
     file: UploadFile = File(...),
     current: Instructor = Depends(get_current_instructor),
     db: Session = Depends(get_db),
+    engine: str = Query(default=None),
 ):
     _get_owned_question(question_id, current.id, db)
     content = await file.read()
     _validate_upload(file, content)
 
     try:
-        ocr_result = get_ocr_service().extract_from_file(content, file.filename, store_file=True)
+        ocr_result = get_ocr_service().extract_from_file(
+            content,
+            file.filename,
+            store_file=True,
+            engine=engine or settings.student_ocr_engine,
+        )
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
-    pages = [
-        OCRPageOut(
-            page_number=page.page_number,
-            text=page.text,
-            confidence=page.confidence,
-            lines=[OCRLineOut(text=line.text, confidence=line.confidence) for line in page.lines],
-            preview_url=_file_url(page.preview_filename),
-        )
-        for page in ocr_result.pages
-    ]
-
-    return OCRPreviewResponse(
-        full_text=ocr_result.full_text,
-        average_confidence=ocr_result.average_confidence,
-        word_count=ocr_result.word_count,
-        page_count=ocr_result.page_count,
-        pages=pages,
-        low_confidence_words=ocr_result.low_confidence_words,
-        file_type=ocr_result.file_type,
-        source_filename=ocr_result.source_filename,
-        source_file_url=_file_url(ocr_result.stored_path),
-        ocr_quality=_ocr_quality_label(ocr_result.average_confidence),
-    )
+    return _ocr_to_preview(ocr_result)
 
 
 @router.post("/{question_id}/submissions/paper", response_model=SubmissionOut, status_code=status.HTTP_201_CREATED)
@@ -180,7 +275,12 @@ async def submit_paper_answer(
     _validate_upload(file, content)
 
     try:
-        ocr_result = get_ocr_service().extract_from_file(content, file.filename, store_file=True)
+        ocr_result = get_ocr_service().extract_from_file(
+            content,
+            file.filename,
+            store_file=True,
+            engine=settings.student_ocr_engine,
+        )
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
@@ -197,6 +297,7 @@ async def submit_paper_answer(
         answer_text,
         question.max_score,
         ocr_confidence=ocr_result.average_confidence,
+        key_concepts=parse_key_concepts(question.key_concepts),
     )
 
     submission = Submission(
@@ -232,7 +333,7 @@ def get_question(
     db: Session = Depends(get_db),
 ):
     question = _get_owned_question(question_id, current.id, db)
-    return _question_to_out(question, db)
+    return question_to_out(question, db)
 
 
 @router.put("/{question_id}", response_model=QuestionOut)
@@ -243,13 +344,15 @@ def update_question(
     db: Session = Depends(get_db),
 ):
     question = _get_owned_question(question_id, current.id, db)
-
-    for field, value in payload.model_dump(exclude_unset=True).items():
+    data = payload.model_dump(exclude_unset=True)
+    if "key_concepts" in data:
+        data["key_concepts"] = dump_key_concepts(data["key_concepts"])
+    for field, value in data.items():
         setattr(question, field, value)
 
     db.commit()
     db.refresh(question)
-    return _question_to_out(question, db)
+    return question_to_out(question, db)
 
 
 @router.delete("/{question_id}", status_code=status.HTTP_204_NO_CONTENT)
@@ -294,6 +397,7 @@ def submit_answer(
         question.model_answer,
         payload.answer_text,
         question.max_score,
+        key_concepts=parse_key_concepts(question.key_concepts),
     )
 
     submission = Submission(

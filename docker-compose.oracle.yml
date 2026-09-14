@@ -30,6 +30,9 @@ services:
       DATABASE_URL: postgresql://${POSTGRES_USER:-autoscoring}:${POSTGRES_PASSWORD:-autoscoring}@db:5432/${POSTGRES_DB:-autoscoring}
       CORS_ORIGINS: ${CORS_ORIGINS}
       SECRET_KEY: ${SECRET_KEY}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_BASE_URL: ${LLM_BASE_URL:-https://api.openai.com/v1}
+      LLM_MODEL: ${LLM_MODEL:-gpt-4o-mini}
     depends_on:
       db:
         condition: service_healthy

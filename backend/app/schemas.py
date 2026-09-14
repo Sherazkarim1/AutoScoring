@@ -34,14 +34,22 @@ class QuestionCreate(BaseModel):
     title: str = Field(min_length=3, max_length=255)
     question_text: str = Field(min_length=10)
     model_answer: str = Field(min_length=10)
+    marking_rubric: Optional[str] = None
+    key_concepts: list[str] = Field(default_factory=list)
     max_score: float = Field(default=10.0, gt=0, le=100)
     subject: str = Field(default="General", max_length=120)
+    generation_source: Optional[str] = Field(default="manual", max_length=20)
+    source_filename: Optional[str] = None
+    source_file_path: Optional[str] = None
+    ocr_raw_text: Optional[str] = None
 
 
 class QuestionUpdate(BaseModel):
     title: Optional[str] = Field(default=None, min_length=3, max_length=255)
     question_text: Optional[str] = Field(default=None, min_length=10)
     model_answer: Optional[str] = Field(default=None, min_length=10)
+    marking_rubric: Optional[str] = None
+    key_concepts: Optional[list[str]] = None
     max_score: Optional[float] = Field(default=None, gt=0, le=100)
     subject: Optional[str] = Field(default=None, max_length=120)
 
@@ -52,6 +60,10 @@ class QuestionOut(BaseModel):
     title: str
     question_text: str
     model_answer: str
+    marking_rubric: Optional[str] = None
+    key_concepts: list[str] = Field(default_factory=list)
+    source_filename: Optional[str] = None
+    generation_source: str = "manual"
     max_score: float
     subject: str
     created_at: datetime
@@ -111,6 +123,33 @@ class OCRPreviewResponse(BaseModel):
     source_filename: str
     source_file_url: Optional[str] = None
     ocr_quality: str
+    ocr_engine: str = "easyocr"
+
+
+class GeneratedQuestionDraft(BaseModel):
+    title: str
+    question_text: str
+    model_answer: str
+    marking_rubric: str = ""
+    key_concepts: list[str] = Field(default_factory=list)
+    max_score: float = 10.0
+    subject: str = "General"
+
+
+class PaperIngestResponse(BaseModel):
+    ocr: OCRPreviewResponse
+    generation_source: str
+    warning: Optional[str] = None
+    questions: list[GeneratedQuestionDraft]
+
+
+class BulkQuestionCreate(BaseModel):
+    questions: list[GeneratedQuestionDraft]
+    subject: str = "General"
+    source_filename: Optional[str] = None
+    source_file_path: Optional[str] = None
+    ocr_raw_text: Optional[str] = None
+    generation_source: str = "llm"
 
 
 class SubmissionOut(BaseModel):

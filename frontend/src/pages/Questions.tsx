@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FilePlus2, ScanLine, Trash2 } from "lucide-react";
+import { FilePlus2, FileUp, ScanLine, Trash2 } from "lucide-react";
 import { api } from "@/api";
 import type { Question } from "@/types";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -47,6 +47,12 @@ export default function Questions() {
         </div>
         <div className="flex flex-wrap gap-2">
           <Button asChild>
+            <Link to="/questions/from-paper">
+              <FileUp className="h-4 w-4" />
+              Upload question paper
+            </Link>
+          </Button>
+          <Button asChild variant="outline">
             <Link to="/grade-paper">
               <ScanLine className="h-4 w-4" />
               Grade paper

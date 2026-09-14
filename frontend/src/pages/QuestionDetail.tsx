@@ -105,11 +105,41 @@ export default function QuestionDetail() {
         </section>
         <section>
           <h2 className="font-display text-lg font-semibold">Model answer</h2>
+          {question.generation_source && question.generation_source !== "manual" && (
+            <Badge variant="secondary" className="mt-2">
+              {question.generation_source === "llm" ? "LLM generated" : "Draft from paper"}
+            </Badge>
+          )}
           <p className="mt-2 border-l-2 border-primary pl-3 text-sm leading-relaxed text-muted-foreground">
             {question.model_answer}
           </p>
         </section>
       </div>
+
+      {(question.marking_rubric || (question.key_concepts && question.key_concepts.length > 0)) && (
+        <div className="grid gap-6 md:grid-cols-2">
+          {question.marking_rubric && (
+            <section>
+              <h2 className="font-display text-lg font-semibold">Marking rubric</h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {question.marking_rubric}
+              </p>
+            </section>
+          )}
+          {question.key_concepts && question.key_concepts.length > 0 && (
+            <section>
+              <h2 className="font-display text-lg font-semibold">Key concepts</h2>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {question.key_concepts.map((concept) => (
+                  <Badge key={concept} variant="outline">
+                    {concept}
+                  </Badge>
+                ))}
+              </div>
+            </section>
+          )}
+        </div>
+      )}
 
       {showForm && (
         <section className="rounded-lg border border-border bg-card p-5">

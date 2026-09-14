@@ -22,8 +22,11 @@ services:
       - "8000:8000"
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-autoscoring}:${POSTGRES_PASSWORD:-autoscoring}@db:5432/${POSTGRES_DB:-autoscoring}
-      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173,http://localhost:3000}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173,http://localhost:5174,http://localhost:3000}
       SECRET_KEY: ${SECRET_KEY:-fyp-autoscoring-secret-change-in-production}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_BASE_URL: ${LLM_BASE_URL:-https://api.openai.com/v1}
+      LLM_MODEL: ${LLM_MODEL:-gpt-4o-mini}
     depends_on:
       db:
         condition: service_healthy

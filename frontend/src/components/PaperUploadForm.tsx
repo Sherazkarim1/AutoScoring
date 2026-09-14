@@ -160,7 +160,7 @@ export default function PaperUploadForm({ questionId, onSuccess }: PaperUploadFo
       {scanning && (
         <p className="flex items-center gap-2 text-sm text-muted-foreground">
           <Loader2 className="h-4 w-4 animate-spin" />
-          Reading paper with OCR…
+          Reading paper with TrOCR…
         </p>
       )}
 
@@ -178,6 +178,7 @@ export default function PaperUploadForm({ questionId, onSuccess }: PaperUploadFo
             >
               OCR {(ocrPreview.average_confidence * 100).toFixed(0)}% · {ocrPreview.ocr_quality}
             </Badge>
+            <Badge variant="secondary">{ocrPreview.ocr_engine === "trocr" ? "TrOCR" : "EasyOCR"}</Badge>
             <span className="text-xs text-muted-foreground">
               {ocrPreview.page_count} page(s) · {ocrPreview.word_count} words
             </span>

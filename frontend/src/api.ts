@@ -86,8 +86,11 @@ export const api = {
     title: string;
     question_text: string;
     model_answer: string;
+    marking_rubric?: string;
+    key_concepts?: string[];
     max_score: number;
     subject: string;
+    generation_source?: string;
   }) =>
     request<import('./types').Question>('/questions', {
       method: 'POST',
@@ -145,6 +148,28 @@ export const api = {
     max_score: number;
   }) =>
     request<import('./types').ScorePreview>('/questions/preview-score', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+
+  ingestQuestionPaper: (file: File, subject?: string) => {
+    const body = new FormData();
+    body.append('file', file);
+    if (subject) body.append('subject', subject);
+    return request<import('./types').PaperIngest>('/questions/ingest-paper', {
+      method: 'POST',
+      body,
+    });
+  },
+
+  bulkCreateQuestions: (data: {
+    questions: import('./types').GeneratedQuestionDraft[];
+    subject?: string;
+    source_filename?: string;
+    ocr_raw_text?: string;
+    generation_source?: string;
+  }) =>
+    request<import('./types').Question[]>('/questions/bulk', {
       method: 'POST',
       body: JSON.stringify(data),
     }),

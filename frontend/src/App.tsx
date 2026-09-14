@@ -11,6 +11,7 @@ import QuestionDetail from './pages/QuestionDetail';
 import GradePaper from './pages/GradePaper';
 import ScorePreview from './pages/ScorePreview';
 import About from './pages/About';
+import UploadQuestionPaper from './pages/UploadQuestionPaper';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
               <Route index element={<Dashboard />} />
               <Route path="grade-paper" element={<GradePaper />} />
               <Route path="questions" element={<Questions />} />
+              <Route path="questions/from-paper" element={<UploadQuestionPaper />} />
               <Route path="questions/new" element={<QuestionForm />} />
               <Route path="questions/:id" element={<QuestionDetail />} />
               <Route path="questions/:id/edit" element={<QuestionForm />} />

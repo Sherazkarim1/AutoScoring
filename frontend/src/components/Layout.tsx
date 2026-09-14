@@ -2,6 +2,7 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import {
   ClipboardCheck,
   FileText,
+  FileUp,
   Info,
   LayoutDashboard,
   LogOut,
@@ -14,6 +15,7 @@ import { cn } from "@/lib/utils";
 
 const NAV = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard, end: true },
+  { to: "/questions/from-paper", label: "Upload paper", icon: FileUp },
   { to: "/grade-paper", label: "Grade paper", icon: ScanLine },
   { to: "/questions", label: "Questions", icon: FileText },
   { to: "/score-preview", label: "Score preview", icon: ClipboardCheck },

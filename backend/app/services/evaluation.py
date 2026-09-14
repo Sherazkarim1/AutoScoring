@@ -14,6 +14,7 @@ class EvaluationMetrics:
     pearson_p_value: float
     spearman_correlation: float
     spearman_p_value: float
+    r_squared: float
     quadratic_weighted_kappa: float
     mean_absolute_error: float
     root_mean_squared_error: float
@@ -31,6 +32,7 @@ class EvaluationMetrics:
             f"Samples evaluated     : {self.sample_count}",
             f"Pearson correlation   : {self.pearson_correlation:.4f} (p={self.pearson_p_value:.4f})",
             f"Spearman correlation  : {self.spearman_correlation:.4f} (p={self.spearman_p_value:.4f})",
+            f"R² (coeff. of det.)   : {self.r_squared:.4f}",
             f"Quadratic Weighted κ  : {self.quadratic_weighted_kappa:.4f}",
             f"Mean Absolute Error   : {self.mean_absolute_error:.4f}",
             f"RMSE                  : {self.root_mean_squared_error:.4f}",
@@ -98,6 +100,9 @@ def compute_metrics(human_scores: list[float], system_scores: list[float]) -> Ev
     qwk = quadratic_weighted_kappa(human, system)
     mae = float(np.mean(diffs))
     rmse = float(np.sqrt(np.mean((human - system) ** 2)))
+    ss_res = float(np.sum((human - system) ** 2))
+    ss_tot = float(np.sum((human - human.mean()) ** 2))
+    r_squared = float(1.0 - ss_res / ss_tot) if ss_tot > 0 else 0.0
 
     return EvaluationMetrics(
         sample_count=len(human),
@@ -105,6 +110,7 @@ def compute_metrics(human_scores: list[float], system_scores: list[float]) -> Ev
         pearson_p_value=round(float(pearson_p), 4),
         spearman_correlation=round(float(spearman_r), 4),
         spearman_p_value=round(float(spearman_p), 4),
+        r_squared=round(r_squared, 4),
         quadratic_weighted_kappa=round(qwk, 4),
         mean_absolute_error=round(mae, 4),
         root_mean_squared_error=round(rmse, 4),

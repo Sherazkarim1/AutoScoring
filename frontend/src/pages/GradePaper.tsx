@@ -50,8 +50,8 @@ export default function GradePaper() {
         </p>
         <h1 className="mt-1 font-display text-4xl font-semibold">Grade written paper</h1>
         <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-          Upload a PDF or photograph of a handwritten or printed answer. OCR extracts the text;
-          you can edit it before scoring.
+          Upload a PDF or photograph of a handwritten or printed answer. TrOCR reads handwriting
+          line by line; you can edit the text before scoring.
         </p>
       </header>
 

@@ -4,9 +4,9 @@ FYP project for **Karakoram International University** — an NLP-powered system
 
 ## Features
 
-- **Written paper support** — upload PDF or photograph handwritten/printed exam papers
-- **OCR extraction** — EasyOCR reads handwriting and print from photos/PDFs
-- **Teacher review** — edit OCR text before scoring if handwriting was misread
+- **Upload question paper** — OCR extracts questions; LLM drafts model answer, rubric, and key concepts
+- **Teacher review** — edit generated drafts before saving
+- **Written student papers** — PDF/photo upload with TrOCR (handwriting) / EasyOCR
 - **BERT-based scoring** via `sentence-transformers/all-MiniLM-L6-v2`
 - **Detailed reports** — matched/missing concepts, keywords, strengths & weaknesses
 - **Multi-factor evaluation**: semantic similarity (60%), keyword coverage (25%), coherence (15%)
@@ -29,14 +29,22 @@ FYP project for **Karakoram International University** — an NLP-powered system
 ## Quick Start (Docker)
 
 ```bash
-docker compose up --build
+git clone https://github.com/Sherazkarim1/AutoScoring.git
+cd AutoScoring
+cp .env.example .env
+# Optional but recommended: add your Groq key in .env
+#   LLM_API_KEY=gsk_...
+#   LLM_BASE_URL=https://api.groq.com/openai/v1
+#   LLM_MODEL=llama-3.3-70b-versatile
+docker compose up --build -d
 ```
 
 - **Frontend**: http://localhost:5173
 - **API docs**: http://localhost:8000/docs
 - **Demo login**: `instructor@kiu.edu.pk` / `password123`
 
-First startup downloads the BERT model (~90MB) and seeds demo data.
+First startup downloads NLP/OCR models (can take several minutes).  
+Without `LLM_API_KEY`, question-paper generation still works with editable heuristic drafts.
 
 ## Deploy on a server
 
@@ -84,10 +92,15 @@ npm run dev
 |--------|----------|-------------|
 | POST | `/api/auth/register` | Register instructor |
 | POST | `/api/auth/login` | Login (OAuth2 form) |
+| GET | `/api/auth/me` | Current instructor |
 | GET | `/api/dashboard/stats` | Dashboard statistics |
 | GET/POST | `/api/questions` | List/create questions |
+| POST | `/api/questions/ingest-paper` | OCR question paper + generate drafts |
+| POST | `/api/questions/bulk` | Save reviewed generated questions |
 | POST | `/api/questions/preview-score` | Preview score without saving |
-| POST | `/api/questions/{id}/submissions` | Score a student answer |
+| POST | `/api/questions/{id}/paper/ocr` | OCR student paper |
+| POST | `/api/questions/{id}/submissions` | Score a typed student answer |
+| POST | `/api/questions/{id}/submissions/paper` | Score a student paper |
 
 ## Scoring Methodology
 

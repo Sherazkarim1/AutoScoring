@@ -87,7 +87,19 @@ class ScoringService:
         )
         return max(0.0, min(1.0, float(cosine_similarity([embeddings[0]], [embeddings[1]])[0][0])))
 
-    def _keyword_coverage(self, model_answer: str, student_answer: str) -> float:
+    def _keyword_coverage(
+        self,
+        model_answer: str,
+        student_answer: str,
+        key_concepts: Optional[list[str]] = None,
+    ) -> float:
+        if key_concepts:
+            concept_tokens: set[str] = set()
+            for concept in key_concepts:
+                concept_tokens |= self._tokenize_words(concept)
+            if concept_tokens:
+                student_tokens = self._tokenize_words(student_answer)
+                return len(concept_tokens.intersection(student_tokens)) / len(concept_tokens)
         model_tokens = self._tokenize_words(model_answer)
         student_tokens = self._tokenize_words(student_answer)
         if not model_tokens:
@@ -156,22 +168,33 @@ class ScoringService:
         model_answer: str,
         student_answer: str,
         ocr_confidence: Optional[float] = None,
+        key_concepts: Optional[list[str]] = None,
     ) -> DetailedReport:
-        model_tokens = self._tokenize_words(model_answer)
-        student_tokens = self._tokenize_words(student_answer)
-        matched_keywords = sorted(model_tokens.intersection(student_tokens))
-        missing_keywords = sorted(model_tokens - student_tokens)
+        if key_concepts:
+            concept_tokens: set[str] = set()
+            for concept in key_concepts:
+                concept_tokens |= self._tokenize_words(concept)
+            student_tokens = self._tokenize_words(student_answer)
+            matched_keywords = sorted(concept_tokens.intersection(student_tokens))
+            missing_keywords = sorted(concept_tokens - student_tokens)
+            concept_list = [c.strip() for c in key_concepts if c.strip()]
+        else:
+            model_tokens = self._tokenize_words(model_answer)
+            student_tokens = self._tokenize_words(student_answer)
+            matched_keywords = sorted(model_tokens.intersection(student_tokens))
+            missing_keywords = sorted(model_tokens - student_tokens)
+            concept_list = self._split_concepts(model_answer)
 
         matched_concepts: list[str] = []
         partial_concepts: list[str] = []
         missing_concepts: list[str] = []
 
-        for concept in self._split_concepts(model_answer):
+        for concept in concept_list:
             similarity = self._concept_similarity(concept, student_answer)
             snippet = concept[:120] + ("..." if len(concept) > 120 else "")
-            if similarity >= 0.72:
+            if similarity >= settings.concept_match_threshold:
                 matched_concepts.append(snippet)
-            elif similarity >= 0.45:
+            elif similarity >= settings.concept_partial_threshold:
                 partial_concepts.append(snippet)
             else:
                 missing_concepts.append(snippet)
@@ -226,6 +249,7 @@ class ScoringService:
         student_answer: str,
         max_score: float = 10.0,
         ocr_confidence: Optional[float] = None,
+        key_concepts: Optional[list[str]] = None,
     ) -> tuple[float, ScoreBreakdown, str, DetailedReport]:
         model_norm = self._normalize_text(model_answer)
         student_norm = self._normalize_text(student_answer)
@@ -237,14 +261,22 @@ class ScoringService:
                 coherence_score=0.0,
                 weighted_score=0.0,
             )
-            report = self.build_detailed_report(model_answer, "", ocr_confidence)
+            report = self.build_detailed_report(model_answer, "", ocr_confidence, key_concepts)
             return 0.0, breakdown, "No answer provided.", report
 
         semantic = self._semantic_similarity(model_norm, student_norm)
-        keywords = self._keyword_coverage(model_norm, student_norm)
+        keywords = self._keyword_coverage(model_norm, student_norm, key_concepts)
         coherence = self._coherence_score(student_norm)
 
-        weighted = 0.6 * semantic + 0.25 * keywords + 0.15 * coherence
+        w_s = settings.weight_semantic
+        w_k = settings.weight_keywords
+        w_c = settings.weight_coherence
+        weight_sum = w_s + w_k + w_c
+        if weight_sum <= 0:
+            w_s, w_k, w_c, weight_sum = 0.6, 0.25, 0.15, 1.0
+        w_s, w_k, w_c = w_s / weight_sum, w_k / weight_sum, w_c / weight_sum
+
+        weighted = w_s * semantic + w_k * keywords + w_c * coherence
         weighted = max(0.0, min(1.0, weighted))
         final_score = round(weighted * max_score, 2)
 
@@ -255,7 +287,9 @@ class ScoringService:
             weighted_score=round(weighted, 4),
         )
         feedback = self._generate_feedback(semantic, keywords, coherence, weighted)
-        report = self.build_detailed_report(model_answer, student_answer, ocr_confidence)
+        report = self.build_detailed_report(
+            model_answer, student_answer, ocr_confidence, key_concepts
+        )
 
         return final_score, breakdown, feedback, report
 

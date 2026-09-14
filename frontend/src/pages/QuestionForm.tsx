@@ -16,6 +16,8 @@ export default function QuestionForm() {
   const [title, setTitle] = useState("");
   const [questionText, setQuestionText] = useState("");
   const [modelAnswer, setModelAnswer] = useState("");
+  const [rubric, setRubric] = useState("");
+  const [keyConcepts, setKeyConcepts] = useState("");
   const [maxScore, setMaxScore] = useState(10);
   const [subject, setSubject] = useState("General");
   const [error, setError] = useState("");
@@ -29,6 +31,8 @@ export default function QuestionForm() {
         setTitle(q.title);
         setQuestionText(q.question_text);
         setModelAnswer(q.model_answer);
+        setRubric(q.marking_rubric || "");
+        setKeyConcepts((q.key_concepts || []).join(", "));
         setMaxScore(q.max_score);
         setSubject(q.subject);
       })
@@ -43,6 +47,11 @@ export default function QuestionForm() {
       title,
       question_text: questionText,
       model_answer: modelAnswer,
+      marking_rubric: rubric,
+      key_concepts: keyConcepts
+        .split(",")
+        .map((part) => part.trim())
+        .filter(Boolean),
       max_score: maxScore,
       subject,
     };
@@ -144,6 +153,27 @@ export default function QuestionForm() {
           <p className="text-xs text-muted-foreground">
             Reference answer used for semantic similarity scoring.
           </p>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="rubric">Marking rubric</Label>
+          <Textarea
+            id="rubric"
+            rows={3}
+            value={rubric}
+            onChange={(e) => setRubric(e.target.value)}
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="concepts">Key concepts</Label>
+          <Input
+            id="concepts"
+            value={keyConcepts}
+            onChange={(e) => setKeyConcepts(e.target.value)}
+            placeholder="evaporation, condensation, precipitation"
+          />
+          <p className="text-xs text-muted-foreground">Comma-separated terms used in keyword scoring.</p>
         </div>
 
         <Button type="submit" disabled={loading}>

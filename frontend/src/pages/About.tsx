@@ -30,10 +30,9 @@ export default function About() {
         <h2 className="font-display text-2xl font-semibold">What it does</h2>
         <Separator />
         <p className="text-sm leading-relaxed text-muted-foreground">
-          Manual marking of subjective answers is slow and easy to skew. AutoScoring reads student
-          responses — typed or written on paper — and scores them with NLP. BERT embeddings compare
-          each answer to the model solution for meaning, keyword coverage, and coherence, then show
-          instructors a transparent breakdown they can review.
+          Instructors can upload a question paper. OCR extracts the questions, then an LLM drafts a
+          model answer, marking rubric, and key concepts (review before saving). Student papers are
+          read with TrOCR. MiniLM then scores the student answer against the model answer.
         </p>
       </section>
 
@@ -54,8 +53,12 @@ export default function About() {
             readability of the response.
           </li>
           <li>
-            <span className="font-medium text-foreground">Paper OCR</span> — PDFs and photos of
-            handwritten scripts are transcribed before scoring.
+            <span className="font-medium text-foreground">Question-paper OCR</span> — EasyOCR reads
+            uploaded exam papers so questions can be extracted.
+          </li>
+          <li>
+            <span className="font-medium text-foreground">Student OCR (TrOCR)</span> — handwritten
+            answers are read line by line, then scored.
           </li>
         </ul>
       </section>
