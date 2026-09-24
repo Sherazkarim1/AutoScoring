@@ -78,6 +78,9 @@ if [ -f .env ] && grep -q '^CORS_ORIGINS=' .env; then
   fi
 fi
 
+# Record the live URL so tooling (and you) can read it without scrolling logs.
+printf '%s\n' "$URL" > .tools/tunnel-url
+
 cat <<EOF
 
 AutoScoring is live.
@@ -86,10 +89,13 @@ AutoScoring is live.
   Backend API       : $URL
   API docs          : $URL/docs
 
-If the Vercel frontend cannot reach the API, set this environment variable in
-the Vercel project (Settings -> Environment Variables) and redeploy:
+ACTION REQUIRED: the Vercel frontend still points at the previous tunnel URL.
+Open your Vercel project -> Settings -> Environment Variables, set
 
   VITE_API_URL=$URL/api
+
+then redeploy the latest deployment (Deployments -> ... -> Redeploy).
+Vite bakes this value in at build time, so saving the variable alone is not enough.
 
 Press Ctrl+C to stop the tunnel (the backend keeps running).
 EOF
