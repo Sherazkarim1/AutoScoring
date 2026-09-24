@@ -28,6 +28,8 @@ services:
         value: uploads
       - key: SEED_DEMO_DATA
         value: "false"
+      - key: REQUIRE_OBJECT_STORAGE
+        value: "true"
       - key: HF_HOME
         value: /tmp/huggingface
       - key: TOKENIZERS_PARALLELISM

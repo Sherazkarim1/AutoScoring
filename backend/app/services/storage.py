@@ -22,9 +22,9 @@ class FileStorage:
                 settings.storage_bucket,
             )
         )
-        if settings.render and not self.use_object_storage:
+        if settings.require_object_storage and not self.use_object_storage:
             raise RuntimeError(
-                "Neon object storage credentials are required on Render. "
+                "Object storage credentials are required on this host. "
                 "Set AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, and AWS_ENDPOINT_URL_S3."
             )
         self._client = None

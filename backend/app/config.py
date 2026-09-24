@@ -4,7 +4,9 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     database_url: str = "postgresql://autoscoring:autoscoring@db:5432/autoscoring"
     database_url_unpooled: str = ""
-    render: bool = False
+    # True on any hosted target that has no persistent local disk
+    # (Hugging Face Spaces, Render, Railway, Codespaces, ...).
+    require_object_storage: bool = False
     secret_key: str = "fyp-autoscoring-secret-change-in-production"
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 60 * 24

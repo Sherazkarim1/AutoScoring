@@ -3,9 +3,9 @@ set -eu
 
 PORT="${PORT:-8000}"
 
-if [ "${RENDER:-false}" = "true" ]; then
-  : "${DATABASE_URL:?DATABASE_URL is required on Render}"
-  : "${DATABASE_URL_UNPOOLED:?DATABASE_URL_UNPOOLED is required on Render}"
+# Required in any hosted environment (Hugging Face Space, Render, etc.).
+if [ -n "${HF_SPACE_ID:-}" ] || [ -n "${RENDER:-}" ] || [ "${REQUIRE_DB:-false}" = "true" ]; then
+  : "${DATABASE_URL:?DATABASE_URL is required in hosted environments}"
 fi
 
 python migrate.py
