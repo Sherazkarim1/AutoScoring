@@ -17,10 +17,12 @@ services:
     restart: unless-stopped
 
   backend:
+    user: root
     build: ./backend
     ports:
-      - "8000:8000"
+      - "8000:7860"
     environment:
+      PORT: 7860
       DATABASE_URL: ${DATABASE_URL:-postgresql://autoscoring:autoscoring@db:5432/autoscoring}
       DATABASE_URL_UNPOOLED: ${DATABASE_URL_UNPOOLED:-}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173,http://localhost:5174,http://localhost:3000}
