@@ -25,6 +25,9 @@ backend/wheels/
 # Model cache
 .cache/
 
+# Local tooling binaries (cloudflared downloaded by start-tunnel.sh)
+.tools/
+
 # Docker
 pgdata/
 *.tsbuildinfo
