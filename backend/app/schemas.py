@@ -149,7 +149,7 @@ class BulkQuestionCreate(BaseModel):
     source_filename: Optional[str] = None
     source_file_path: Optional[str] = None
     ocr_raw_text: Optional[str] = None
-    generation_source: str = "llm"
+    generation_source: str = "paper"
 
 
 class SubmissionOut(BaseModel):

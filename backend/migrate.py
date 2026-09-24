@@ -1,8 +1,7 @@
-import json
+from sqlalchemy import create_engine, text
 
-from sqlalchemy import text
-
-from app.database import engine
+from app.config import settings
+from app.models import Base
 
 
 MIGRATIONS = [
@@ -23,9 +22,15 @@ MIGRATIONS = [
 
 
 def run_migrations():
-    with engine.begin() as conn:
-        for statement in MIGRATIONS:
-            conn.execute(text(statement))
+    migration_url = settings.database_url_unpooled or settings.database_url
+    migration_engine = create_engine(migration_url, pool_pre_ping=True)
+    try:
+        Base.metadata.create_all(bind=migration_engine)
+        with migration_engine.begin() as conn:
+            for statement in MIGRATIONS:
+                conn.execute(text(statement))
+    finally:
+        migration_engine.dispose()
     print("Database migrations applied.")
 
 

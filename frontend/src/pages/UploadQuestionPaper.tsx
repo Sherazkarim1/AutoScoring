@@ -58,6 +58,13 @@ export default function UploadQuestionPaper() {
 
   const handleSave = async () => {
     if (!drafts.length) return;
+    const missing = drafts.findIndex((d) => !d.model_answer.trim());
+    if (missing >= 0) {
+      setError(
+        `Question ${missing + 1} has no model answer. Paste your official answer key before saving.`
+      );
+      return;
+    }
     setSaving(true);
     setError("");
     try {
@@ -66,7 +73,7 @@ export default function UploadQuestionPaper() {
         subject,
         source_filename: ocr?.source_filename,
         ocr_raw_text: ocr?.full_text,
-        generation_source: source || "llm",
+        generation_source: source || "paper",
       });
       navigate("/questions");
     } catch (err) {
@@ -84,8 +91,8 @@ export default function UploadQuestionPaper() {
         </p>
         <h1 className="mt-1 font-display text-4xl font-semibold">Upload question paper</h1>
         <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-          OCR reads the paper, questions are extracted, then AI drafts a model answer, marking
-          rubric, and key concepts. Review before saving — then grade student papers against them.
+          OCR extracts questions from the paper. You must paste your official model answer
+          (answer key) for each question before saving — scoring compares the student to that key.
         </p>
       </header>
 
@@ -128,13 +135,12 @@ export default function UploadQuestionPaper() {
               Reading paper…
             </>
           ) : (
-            "Extract questions and generate answers"
+            "Extract questions and create drafts"
           )}
         </Button>
         <p className="text-xs text-muted-foreground">
-          Printed papers use EasyOCR. Student handwriting later uses TrOCR. Add{" "}
-          <code>LLM_API_KEY</code> for full AI model answers; otherwise drafts are created for you
-          to edit.
+          Printed papers use EasyOCR (faster). Always paste your real answer key into Model answer
+          before saving — otherwise a correct student answer can still get a low score.
         </p>
       </form>
 
@@ -153,9 +159,9 @@ export default function UploadQuestionPaper() {
         <section className="space-y-5">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
-              <h2 className="font-display text-2xl font-semibold">Generated questions</h2>
+              <h2 className="font-display text-2xl font-semibold">Extracted questions</h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                Source: {source === "llm" ? "LLM" : "extracted draft"} · edit anything before save
+                Source: extracted draft · edit the model answer before save
               </p>
             </div>
             <Button onClick={handleSave} disabled={saving}>

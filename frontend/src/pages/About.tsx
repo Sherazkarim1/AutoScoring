@@ -30,9 +30,9 @@ export default function About() {
         <h2 className="font-display text-2xl font-semibold">What it does</h2>
         <Separator />
         <p className="text-sm leading-relaxed text-muted-foreground">
-          Instructors can upload a question paper. OCR extracts the questions, then an LLM drafts a
-          model answer, marking rubric, and key concepts (review before saving). Student papers are
-          read with TrOCR. MiniLM then scores the student answer against the model answer.
+          Instructors can upload a question paper. OCR extracts the questions; the teacher pastes
+          the official model answers (answer key). Student papers are read with OCR. MiniLM then
+          scores each student answer against that model answer. There is no external LLM API.
         </p>
       </section>
 

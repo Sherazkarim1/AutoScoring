@@ -9,8 +9,9 @@ venv/
 node_modules/
 dist/
 
-# Uploads & local artifacts
+# Uploads, model wheels & local artifacts
 backend/uploads/
+backend/wheels/
 *.log
 
 # IDE
@@ -27,3 +28,4 @@ backend/uploads/
 # Docker
 pgdata/
 *.tsbuildinfo
+.neon

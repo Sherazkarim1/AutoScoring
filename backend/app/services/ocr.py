@@ -1,6 +1,5 @@
 import io
 import json
-import uuid
 from dataclasses import asdict, dataclass
 from functools import lru_cache
 from pathlib import Path
@@ -12,6 +11,7 @@ import numpy as np
 from PIL import Image
 
 from app.config import settings
+from app.services.storage import get_file_storage
 
 ALLOWED_IMAGE_TYPES = {".jpg", ".jpeg", ".png", ".webp", ".bmp", ".tif", ".tiff"}
 ALLOWED_PDF_TYPES = {".pdf"}
@@ -88,8 +88,6 @@ class OCRService:
         self._trocr_processor = None
         self._trocr_model = None
         self._trocr_failed = False
-        self.upload_dir = Path(settings.upload_dir)
-        self.upload_dir.mkdir(parents=True, exist_ok=True)
 
     @property
     def reader(self) -> easyocr.Reader:
@@ -113,10 +111,7 @@ class OCRService:
             self._trocr_model = None
 
     def _save_bytes(self, content: bytes, suffix: str) -> str:
-        filename = f"{uuid.uuid4().hex}{suffix}"
-        path = self.upload_dir / filename
-        path.write_bytes(content)
-        return filename
+        return get_file_storage().save(content, suffix)
 
     def _pdf_to_images(self, pdf_bytes: bytes) -> list[bytes]:
         doc = fitz.open(stream=pdf_bytes, filetype="pdf")

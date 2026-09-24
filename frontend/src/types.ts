@@ -64,7 +64,7 @@ export interface GeneratedQuestionDraft {
 
 export interface PaperIngest {
   ocr: OCRPreview;
-  generation_source: 'llm' | 'heuristic' | string;
+  generation_source: 'paper' | 'manual' | string;
   warning?: string | null;
   questions: GeneratedQuestionDraft[];
 }

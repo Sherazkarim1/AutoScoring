@@ -1,11 +1,9 @@
-from pathlib import Path
-
 from fastapi import APIRouter, Depends, HTTPException
-from fastapi.responses import FileResponse
+from fastapi.responses import Response
 
 from app.auth import get_current_instructor
-from app.config import settings
 from app.models import Instructor
+from app.services.storage import get_file_storage
 
 router = APIRouter(prefix="/files", tags=["Files"])
 
@@ -15,13 +13,14 @@ def get_uploaded_file(
     filename: str,
     _: Instructor = Depends(get_current_instructor),
 ):
-    upload_dir = Path(settings.upload_dir).resolve()
-    file_path = (upload_dir / filename).resolve()
+    try:
+        content = get_file_storage().read(filename)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail="Invalid file path") from exc
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="File not found") from exc
 
-    if not str(file_path).startswith(str(upload_dir)):
-        raise HTTPException(status_code=400, detail="Invalid file path")
-
-    if not file_path.exists() or not file_path.is_file():
-        raise HTTPException(status_code=404, detail="File not found")
-
-    return FileResponse(file_path)
+    return Response(
+        content=content,
+        media_type=get_file_storage().media_type(filename),
+    )

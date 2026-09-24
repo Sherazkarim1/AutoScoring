@@ -21,12 +21,16 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER:-autoscoring}:${POSTGRES_PASSWORD:-autoscoring}@db:5432/${POSTGRES_DB:-autoscoring}
+      DATABASE_URL: ${DATABASE_URL:-postgresql://autoscoring:autoscoring@db:5432/autoscoring}
+      DATABASE_URL_UNPOOLED: ${DATABASE_URL_UNPOOLED:-}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173,http://localhost:5174,http://localhost:3000}
       SECRET_KEY: ${SECRET_KEY:-fyp-autoscoring-secret-change-in-production}
-      LLM_API_KEY: ${LLM_API_KEY:-}
-      LLM_BASE_URL: ${LLM_BASE_URL:-https://api.openai.com/v1}
-      LLM_MODEL: ${LLM_MODEL:-gpt-4o-mini}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+      AWS_ENDPOINT_URL_S3: ${AWS_ENDPOINT_URL_S3:-}
+      AWS_REGION: ${AWS_REGION:-us-east-2}
+      STORAGE_BUCKET: ${STORAGE_BUCKET:-uploads}
+      SEED_DEMO_DATA: ${SEED_DEMO_DATA:-true}
     depends_on:
       db:
         condition: service_healthy

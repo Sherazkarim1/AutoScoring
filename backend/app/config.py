@@ -3,6 +3,8 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     database_url: str = "postgresql://autoscoring:autoscoring@db:5432/autoscoring"
+    database_url_unpooled: str = ""
+    render: bool = False
     secret_key: str = "fyp-autoscoring-secret-change-in-production"
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 60 * 24
@@ -15,13 +17,16 @@ class Settings(BaseSettings):
     concept_partial_threshold: float = 0.45
     cors_origins: str = "http://localhost:5173,http://localhost:3000"
     upload_dir: str = "uploads"
+    storage_bucket: str = "uploads"
+    aws_access_key_id: str = ""
+    aws_secret_access_key: str = ""
+    aws_endpoint_url_s3: str = ""
+    aws_region: str = "us-east-2"
     max_upload_mb: int = 15
-    student_ocr_engine: str = "trocr"
+    student_ocr_engine: str = "easyocr"
     question_ocr_engine: str = "easyocr"
     trocr_model: str = "microsoft/trocr-base-handwritten"
-    llm_api_key: str = ""
-    llm_base_url: str = "https://api.openai.com/v1"
-    llm_model: str = "gpt-4o-mini"
+    seed_demo_data: bool = True
 
     class Config:
         env_file = ".env"

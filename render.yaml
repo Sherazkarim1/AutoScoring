@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: autoscoring-api
+    runtime: docker
+    rootDir: backend
+    plan: free
+    region: ohio
+    healthCheckPath: /api/health
+    dockerCommand: sh start.sh
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_URL_UNPOOLED
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: CORS_ORIGINS
+        sync: false
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+      - key: AWS_ENDPOINT_URL_S3
+        sync: false
+      - key: AWS_REGION
+        value: us-east-2
+      - key: STORAGE_BUCKET
+        value: uploads
+      - key: SEED_DEMO_DATA
+        value: "false"
+      - key: HF_HOME
+        value: /tmp/huggingface
+      - key: TOKENIZERS_PARALLELISM
+        value: "false"

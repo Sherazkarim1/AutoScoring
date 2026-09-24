@@ -21,7 +21,7 @@ from app.schemas import (
     SubmissionCreate,
     SubmissionOut,
 )
-from app.services.generation import generate_from_ocr
+from app.services.extraction import extract_from_ocr
 from app.services.ocr import get_ocr_service
 from app.services.scoring import get_scoring_service
 from app.utils.questions import dump_key_concepts, parse_key_concepts, question_to_out
@@ -160,7 +160,7 @@ async def ingest_question_paper(
         )
 
     try:
-        generated = generate_from_ocr(ocr_result.full_text, subject=subject or "General")
+        extracted = extract_from_ocr(ocr_result.full_text, subject=subject or "General")
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 
@@ -174,12 +174,12 @@ async def ingest_question_paper(
             max_score=item.max_score,
             subject=item.subject or subject or "General",
         )
-        for item in generated.questions
+        for item in extracted.questions
     ]
     return PaperIngestResponse(
         ocr=_ocr_to_preview(ocr_result),
-        generation_source=generated.source,
-        warning=generated.warning,
+        generation_source=extracted.source,
+        warning=extracted.warning,
         questions=drafts,
     )
 
@@ -192,6 +192,12 @@ def bulk_create_questions(
 ):
     if not payload.questions:
         raise HTTPException(status_code=400, detail="No questions to save")
+    for index, draft in enumerate(payload.questions, start=1):
+        if not (draft.model_answer or "").strip():
+            raise HTTPException(
+                status_code=400,
+                detail=f"Question {index} is missing a model answer. Paste your official answer key before saving.",
+            )
     created: list[QuestionOut] = []
     for draft in payload.questions:
         row = _create_question_row(

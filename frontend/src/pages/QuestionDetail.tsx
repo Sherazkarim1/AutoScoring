@@ -107,7 +107,9 @@ export default function QuestionDetail() {
           <h2 className="font-display text-lg font-semibold">Model answer</h2>
           {question.generation_source && question.generation_source !== "manual" && (
             <Badge variant="secondary" className="mt-2">
-              {question.generation_source === "llm" ? "LLM generated" : "Draft from paper"}
+              {question.generation_source === "paper" || question.generation_source === "heuristic"
+                ? "From question paper"
+                : question.generation_source}
             </Badge>
           )}
           <p className="mt-2 border-l-2 border-primary pl-3 text-sm leading-relaxed text-muted-foreground">

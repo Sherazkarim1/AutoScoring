@@ -1,6 +1,7 @@
 """Seed demo instructor, questions, and sample submissions."""
 
 from app.auth import get_password_hash
+from app.config import settings
 from app.database import SessionLocal, engine
 from app.models import Base, Instructor, Question, Submission
 
@@ -102,4 +103,7 @@ def seed():
 
 
 if __name__ == "__main__":
-    seed()
+    if settings.seed_demo_data:
+        seed()
+    else:
+        print("Demo data seeding disabled.")
