@@ -58,6 +58,8 @@ class ScoringService:
             "being", "have", "has", "had", "do", "does", "did", "will", "would",
             "could", "should", "may", "might", "must", "shall", "can", "this",
             "that", "these", "those", "it", "its", "as", "if", "than", "then",
+            # Exam-paper boilerplate: instructions and headings, never answer content.
+            "allowed", "difference", "minutes", "paper", "time",
         }
         return {w for w in words if len(w) > 2 and w not in stopwords}
 
