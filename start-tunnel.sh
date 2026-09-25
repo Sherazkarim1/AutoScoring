@@ -34,14 +34,14 @@ if ! curl -sf -m 5 http://localhost:8000/api/health >/dev/null 2>&1; then
 fi
 echo "Backend is healthy."
 
-# Start a fresh tunnel, replacing any previous one. Kill by the full command
-# line: "localtunnel" also matches this script's own grep, and the old
-# cloudflared must be gone before the subdomain can be re-registered.
+# Start a fresh tunnel, replacing any previous one. Match the executable path
+# rather than a bare name: a leftover tunnel keeps the subdomain claimed and the
+# new one then fails with "Tunnel not found".
 pkill -f "cloudflared tunnel" 2>/dev/null || true
 pkill -f "localtunnel --port" 2>/dev/null || true
-sleep 3
+sleep 2
 : > "$LOG"
-npx --yes localtunnel --port 8000 --subdomain "$SUBDOMAIN" >"$LOG" 2>&1 &
+nohup npx --yes localtunnel --port 8000 --subdomain "$SUBDOMAIN" >"$LOG" 2>&1 &
 TUNNEL_PID=$!
 
 i=0
