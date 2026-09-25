@@ -12,7 +12,7 @@ cd "$(dirname "$0")"
 
 # Claiming a fixed subdomain needs no account and no card. If someone else has
 # already taken it, change SUBDOMAIN to any unused word.
-SUBDOMAIN="autoscoring-kiu"
+SUBDOMAIN="autoscoring-kiu-web"
 URL="https://${SUBDOMAIN}.loca.lt"
 LOG=".tools/tunnel.log"
 
@@ -44,18 +44,43 @@ sleep 2
 nohup npx --yes localtunnel --port 8000 --subdomain "$SUBDOMAIN" >"$LOG" 2>&1 &
 TUNNEL_PID=$!
 
+# localtunnel frees a claimed subdomain asynchronously, so the first attempt can
+# come back with a random hostname instead of the fixed one. Retry until it
+# actually claims SUBDOMAIN, otherwise VITE_API_URL would be left pointing at a
+# dead host.
+URL=""
+i=0
+while [ "$i" -lt 6 ]; do
+  sleep 3
+  if grep -q "https://${SUBDOMAIN}\.loca\.lt" "$LOG" 2>/dev/null; then
+    URL="https://${SUBDOMAIN}.loca.lt"
+    break
+  fi
+  # Retry the claim with a fresh process.
+  kill "$TUNNEL_PID" 2>/dev/null || true
+  wait "$TUNNEL_PID" 2>/dev/null || true
+  sleep 5
+  nohup npx --yes localtunnel --port 8000 --subdomain "$SUBDOMAIN" >>"$LOG" 2>&1 &
+  TUNNEL_PID=$!
+  i=$((i + 1))
+done
+
 # Probe the way a browser would, including the interstitial bypass header.
 i=0
 while [ "$i" -lt 40 ]; do
-  if curl -sf -m 5 -H "bypass-tunnel-reminder: true" "$URL/api/health" >/dev/null 2>&1; then
+  if [ -n "$URL" ] && curl -sf -m 5 -H "bypass-tunnel-reminder: true" "$URL/api/health" >/dev/null 2>&1; then
     break
   fi
   i=$((i + 1))
   sleep 2
 done
 
-if ! curl -sf -m 8 -H "bypass-tunnel-reminder: true" "$URL/api/health" >/dev/null 2>&1; then
-  echo "Tunnel did not come up at $URL. See $LOG" >&2
+if [ -z "$URL" ] || ! curl -sf -m 8 -H "bypass-tunnel-reminder: true" "$URL/api/health" >/dev/null 2>&1; then
+  ACTUAL=$(grep -oE 'https://[a-z0-9-]+\.loca\.lt' "$LOG" 2>/dev/null | tail -1)
+  echo "Tunnel did not come up at the fixed URL. See $LOG" >&2
+  if [ -n "$ACTUAL" ]; then
+    echo "localtunnel served it at $ACTUAL instead. Either wait and re-run, or change SUBDOMAIN in this script." >&2
+  fi
   exit 1
 fi
 
