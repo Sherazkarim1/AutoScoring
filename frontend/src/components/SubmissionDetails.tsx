@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { API_ORIGIN } from "@/api";
+import { API_ORIGIN, TUNNEL_BYPASS } from "@/api";
 import type { DetailedReport, OCRPage, Submission } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -150,7 +150,9 @@ function AuthenticatedImage({
     const token = localStorage.getItem("token");
     let objectUrl: string | null = null;
 
-    fetch(url, { headers: token ? { Authorization: `Bearer ${token}` } : {} })
+    fetch(url, {
+      headers: { ...TUNNEL_BYPASS, ...(token ? { Authorization: `Bearer ${token}` } : {}) },
+    })
       .then((res) => {
         if (!res.ok) throw new Error("Failed to load image");
         return res.blob();

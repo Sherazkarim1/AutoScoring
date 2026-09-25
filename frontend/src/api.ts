@@ -19,9 +19,15 @@ function getToken(): string | null {
   return localStorage.getItem('token');
 }
 
+// localtunnel shows a "Tunnel website ahead!" interstitial to real browsers,
+// which replaces API responses with HTML. This header skips it. Cloudflare
+// tunnels ignore unknown headers, so it is safe to send unconditionally.
+export const TUNNEL_BYPASS = { 'bypass-tunnel-reminder': 'true' };
+
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const token = getToken();
   const headers: Record<string, string> = {
+    ...TUNNEL_BYPASS,
     ...(options.headers as Record<string, string> || {}),
   };
 
@@ -58,7 +64,7 @@ export const api = {
     const body = new URLSearchParams({ username: email, password });
     const res = await fetch(`${API_BASE}/auth/login`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      headers: { ...TUNNEL_BYPASS, 'Content-Type': 'application/x-www-form-urlencoded' },
       body,
     });
     if (!res.ok) {
