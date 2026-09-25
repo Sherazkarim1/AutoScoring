@@ -28,10 +28,39 @@ class ExtractionResult:
     warning: str | None = None
 
 
+# Question markers are matched two ways: at the start of a line ("2. Explain ...")
+# and inline ("Q2 Explain ..."). OCR flattens a whole page into one line of text, so
+# the inline form is what actually fires for uploaded papers. A bare number is only
+# trusted at a line start, otherwise "(10 marks)" and "1.5 hours" split mid-question.
+# OCR frequently reads the "Q" of "Q2" as "0", so "02"/"03" are accepted too.
 QUESTION_SPLIT = re.compile(
-    r"(?im)^\s*(?:q(?:uestion)?\s*)?(\d+)\s*[\.\)\:\-]\s+",
+    r"(?im)^[ \t]*(?:q(?:uestion)?[ \t]*)?(\d+)[ \t]*[.):\-][ \t]+"
+    r"|(?<![A-Za-z0-9])(?:q(?:uestion)?|0)([0-9])(?![0-9])"
 )
 MARKS_PATTERN = re.compile(r"\((\d+(?:\.\d+)?)\s*marks?\)", re.I)
+
+# Exam papers open with institutional boilerplate: who issued it, which course, which
+# session, how long, how many marks. None of it is answerable, so it must never be
+# read as a question or as the concepts being tested.
+PAPER_BOILERPLATE = {
+    "university", "department", "faculty", "institute", "college", "school",
+    "kiu", "course", "code", "semester", "term", "session", "subject",
+    "examination", "exam", "test", "quiz", "assignment", "mid", "final",
+    "fall", "spring", "summer", "year", "hour", "hours", "time", "minutes",
+    "marks", "total", "maximum", "minimum", "allowed", "duration", "paper",
+    "page", "pages", "roll", "number", "name", "date", "candidate",
+    "registration", "reg", "bits", "section", "part", "note", "instructions",
+    "computer", "science",
+}
+
+
+def _first_group(match: re.Match) -> str:
+    return match.group(1) or match.group(2)
+
+
+def _strip_paper_header(text: str, first_question_start: int) -> str:
+    """Drop the institutional header that precedes the first question marker."""
+    return text[first_question_start:].strip()
 
 
 def extract_question_blocks(ocr_text: str) -> list[tuple[str, str, float | None]]:
@@ -44,6 +73,12 @@ def extract_question_blocks(ocr_text: str) -> list[tuple[str, str, float | None]
     if not matches:
         return [("1", text, _find_marks(text))]
 
+    # Anything before the first question marker is the exam header, not a question.
+    text = _strip_paper_header(text, matches[0].start())
+    matches = list(QUESTION_SPLIT.finditer(text))
+    if not matches:
+        return []
+
     blocks: list[tuple[str, str, float | None]] = []
     for index, match in enumerate(matches):
         start = match.end()
@@ -52,7 +87,7 @@ def extract_question_blocks(ocr_text: str) -> list[tuple[str, str, float | None]
         body = re.sub(r"\s+", " ", body)
         if len(body) < 8:
             continue
-        number = match.group(1)
+        number = _first_group(match)
         blocks.append((number, body, _find_marks(body)))
     return blocks or [("1", text, _find_marks(text))]
 
@@ -75,12 +110,16 @@ def _key_phrases(text: str, limit: int = 8) -> list[str]:
         "where", "which", "while", "explain", "describe", "discuss", "define",
         "briefly", "following", "question", "answer", "marks", "using", "into",
     }
+    # Exam-header words are never testable content, so they are dropped here too.
+    blocked = stop | PAPER_BOILERPLATE
     seen: list[str] = []
+    seen_lower: set[str] = set()
     for word in words:
         lowered = word.lower()
-        if lowered in stop or lowered in {s.lower() for s in seen}:
+        if lowered in blocked or lowered in seen_lower:
             continue
         seen.append(word)
+        seen_lower.add(lowered)
         if len(seen) >= limit:
             break
     return seen
