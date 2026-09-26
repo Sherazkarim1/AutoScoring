@@ -4,8 +4,8 @@ FYP project for **Karakoram International University** — an NLP-powered system
 
 ## Features
 
-- **Upload question paper** — OCR extracts questions; LLM drafts model answer, rubric, and key concepts
-- **Teacher review** — edit generated drafts before saving
+- **Upload question paper** — OCR extracts questions; teacher pastes the official answer key
+- **Teacher review** — edit extracted questions and model answers before saving
 - **Written student papers** — PDF/photo upload with TrOCR (handwriting) / EasyOCR
 - **BERT-based scoring** via `sentence-transformers/all-MiniLM-L6-v2`
 - **Detailed reports** — matched/missing concepts, keywords, strengths & weaknesses
@@ -32,10 +32,6 @@ FYP project for **Karakoram International University** — an NLP-powered system
 git clone https://github.com/Sherazkarim1/AutoScoring.git
 cd AutoScoring
 cp .env.example .env
-# Optional but recommended: add your Groq key in .env
-#   LLM_API_KEY=gsk_...
-#   LLM_BASE_URL=https://api.groq.com/openai/v1
-#   LLM_MODEL=llama-3.3-70b-versatile
 docker compose up --build -d
 ```
 
@@ -44,7 +40,7 @@ docker compose up --build -d
 - **Demo login**: `instructor@kiu.edu.pk` / `password123`
 
 First startup downloads NLP/OCR models (can take several minutes).  
-Without `LLM_API_KEY`, question-paper generation still works with editable heuristic drafts.
+After uploading a question paper, edit the draft model answers (or paste your official answer key) before scoring.
 
 ## Deploy on a server
 
@@ -95,8 +91,8 @@ npm run dev
 | GET | `/api/auth/me` | Current instructor |
 | GET | `/api/dashboard/stats` | Dashboard statistics |
 | GET/POST | `/api/questions` | List/create questions |
-| POST | `/api/questions/ingest-paper` | OCR question paper + generate drafts |
-| POST | `/api/questions/bulk` | Save reviewed generated questions |
+| POST | `/api/questions/ingest-paper` | OCR question paper + draft questions |
+| POST | `/api/questions/bulk` | Save extracted questions after teacher adds answer keys |
 | POST | `/api/questions/preview-score` | Preview score without saving |
 | POST | `/api/questions/{id}/paper/ocr` | OCR student paper |
 | POST | `/api/questions/{id}/submissions` | Score a typed student answer |

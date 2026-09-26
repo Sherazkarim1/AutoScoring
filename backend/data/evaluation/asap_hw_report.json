@@ -1,0 +1,1871 @@
+{
+  "metrics": {
+    "sample_count": 185,
+    "pearson_correlation": 0.8373,
+    "pearson_p_value": 0.0,
+    "spearman_correlation": 0.8263,
+    "spearman_p_value": 0.0,
+    "r_squared": 0.573,
+    "quadratic_weighted_kappa": 0.611,
+    "mean_absolute_error": 0.7156,
+    "root_mean_squared_error": 0.8574,
+    "mean_human_score": 6.59,
+    "mean_system_score": 6.76,
+    "exact_match_rate": 0.0054,
+    "within_1_point_rate": 0.7514,
+    "within_2_point_rate": 0.9892
+  },
+  "samples": [
+    {
+      "title": "Prompt3 HW ID 6809",
+      "human_score": 7.06,
+      "system_score": 7.36,
+      "max_score": 10.0,
+      "error": 0.3,
+      "semantic_similarity": 0.8942,
+      "keyword_coverage": 0.2571,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6812",
+      "human_score": 4.97,
+      "system_score": 6.51,
+      "max_score": 10.0,
+      "error": 1.54,
+      "semantic_similarity": 0.8252,
+      "keyword_coverage": 0.1429,
+      "coherence_score": 0.8
+    },
+    {
+      "title": "Prompt3 HW ID 6813",
+      "human_score": 8.31,
+      "system_score": 7.54,
+      "max_score": 10.0,
+      "error": 0.77,
+      "semantic_similarity": 0.8876,
+      "keyword_coverage": 0.2857,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6814",
+      "human_score": 6.0,
+      "system_score": 6.48,
+      "max_score": 10.0,
+      "error": 0.48,
+      "semantic_similarity": 0.7899,
+      "keyword_coverage": 0.1571,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6816",
+      "human_score": 5.37,
+      "system_score": 6.85,
+      "max_score": 10.0,
+      "error": 1.48,
+      "semantic_similarity": 0.8637,
+      "keyword_coverage": 0.1857,
+      "coherence_score": 0.8
+    },
+    {
+      "title": "Prompt3 HW ID 6817",
+      "human_score": 7.62,
+      "system_score": 7.37,
+      "max_score": 10.0,
+      "error": 0.25,
+      "semantic_similarity": 0.8593,
+      "keyword_coverage": 0.2857,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6818",
+      "human_score": 7.66,
+      "system_score": 7.48,
+      "max_score": 10.0,
+      "error": 0.18,
+      "semantic_similarity": 0.8958,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6820",
+      "human_score": 4.28,
+      "system_score": 5.72,
+      "max_score": 10.0,
+      "error": 1.44,
+      "semantic_similarity": 0.6909,
+      "keyword_coverage": 0.1143,
+      "coherence_score": 0.8625
+    },
+    {
+      "title": "Prompt3 HW ID 6821",
+      "human_score": 6.94,
+      "system_score": 6.88,
+      "max_score": 10.0,
+      "error": 0.06,
+      "semantic_similarity": 0.8076,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6822",
+      "human_score": 6.53,
+      "system_score": 7.32,
+      "max_score": 10.0,
+      "error": 0.79,
+      "semantic_similarity": 0.8759,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 0.975
+    },
+    {
+      "title": "Prompt3 HW ID 6823",
+      "human_score": 6.28,
+      "system_score": 6.91,
+      "max_score": 10.0,
+      "error": 0.63,
+      "semantic_similarity": 0.8368,
+      "keyword_coverage": 0.1571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6824",
+      "human_score": 5.44,
+      "system_score": 6.46,
+      "max_score": 10.0,
+      "error": 1.02,
+      "semantic_similarity": 0.7871,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 0.8
+    },
+    {
+      "title": "Prompt3 HW ID 6825",
+      "human_score": 6.52,
+      "system_score": 6.59,
+      "max_score": 10.0,
+      "error": 0.07,
+      "semantic_similarity": 0.796,
+      "keyword_coverage": 0.1857,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6826",
+      "human_score": 6.58,
+      "system_score": 7.06,
+      "max_score": 10.0,
+      "error": 0.48,
+      "semantic_similarity": 0.8383,
+      "keyword_coverage": 0.2286,
+      "coherence_score": 0.975
+    },
+    {
+      "title": "Prompt3 HW ID 6827",
+      "human_score": 6.37,
+      "system_score": 6.54,
+      "max_score": 10.0,
+      "error": 0.17,
+      "semantic_similarity": 0.7691,
+      "keyword_coverage": 0.1714,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6829",
+      "human_score": 7.47,
+      "system_score": 6.75,
+      "max_score": 10.0,
+      "error": 0.72,
+      "semantic_similarity": 0.7793,
+      "keyword_coverage": 0.2286,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6830",
+      "human_score": 5.22,
+      "system_score": 6.36,
+      "max_score": 10.0,
+      "error": 1.14,
+      "semantic_similarity": 0.7949,
+      "keyword_coverage": 0.2,
+      "coherence_score": 0.725
+    },
+    {
+      "title": "Prompt3 HW ID 6831",
+      "human_score": 6.01,
+      "system_score": 6.44,
+      "max_score": 10.0,
+      "error": 0.43,
+      "semantic_similarity": 0.7971,
+      "keyword_coverage": 0.1143,
+      "coherence_score": 0.9125
+    },
+    {
+      "title": "Prompt3 HW ID 6832",
+      "human_score": 7.12,
+      "system_score": 7.19,
+      "max_score": 10.0,
+      "error": 0.07,
+      "semantic_similarity": 0.8764,
+      "keyword_coverage": 0.1714,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6833",
+      "human_score": 8.31,
+      "system_score": 7.68,
+      "max_score": 10.0,
+      "error": 0.63,
+      "semantic_similarity": 0.9046,
+      "keyword_coverage": 0.3,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6834",
+      "human_score": 7.19,
+      "system_score": 7.0,
+      "max_score": 10.0,
+      "error": 0.19,
+      "semantic_similarity": 0.827,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6835",
+      "human_score": 7.75,
+      "system_score": 7.0,
+      "max_score": 10.0,
+      "error": 0.75,
+      "semantic_similarity": 0.8152,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6837",
+      "human_score": 4.37,
+      "system_score": 6.32,
+      "max_score": 10.0,
+      "error": 1.95,
+      "semantic_similarity": 0.8121,
+      "keyword_coverage": 0.1286,
+      "coherence_score": 0.75
+    },
+    {
+      "title": "Prompt3 HW ID 6839",
+      "human_score": 6.61,
+      "system_score": 6.83,
+      "max_score": 10.0,
+      "error": 0.22,
+      "semantic_similarity": 0.8122,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6840",
+      "human_score": 7.28,
+      "system_score": 6.69,
+      "max_score": 10.0,
+      "error": 0.59,
+      "semantic_similarity": 0.799,
+      "keyword_coverage": 0.1571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6841",
+      "human_score": 6.41,
+      "system_score": 6.85,
+      "max_score": 10.0,
+      "error": 0.44,
+      "semantic_similarity": 0.8518,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 0.8
+    },
+    {
+      "title": "Prompt3 HW ID 6842",
+      "human_score": 7.47,
+      "system_score": 6.83,
+      "max_score": 10.0,
+      "error": 0.64,
+      "semantic_similarity": 0.7935,
+      "keyword_coverage": 0.2286,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6844",
+      "human_score": 6.14,
+      "system_score": 6.67,
+      "max_score": 10.0,
+      "error": 0.53,
+      "semantic_similarity": 0.8091,
+      "keyword_coverage": 0.1857,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6845",
+      "human_score": 6.94,
+      "system_score": 6.83,
+      "max_score": 10.0,
+      "error": 0.11,
+      "semantic_similarity": 0.8048,
+      "keyword_coverage": 0.2,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6847",
+      "human_score": 8.59,
+      "system_score": 7.97,
+      "max_score": 10.0,
+      "error": 0.62,
+      "semantic_similarity": 0.9115,
+      "keyword_coverage": 0.4,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6852",
+      "human_score": 4.83,
+      "system_score": 6.11,
+      "max_score": 10.0,
+      "error": 1.28,
+      "semantic_similarity": 0.7674,
+      "keyword_coverage": 0.1286,
+      "coherence_score": 0.7875
+    },
+    {
+      "title": "Prompt3 HW ID 6854",
+      "human_score": 7.79,
+      "system_score": 7.27,
+      "max_score": 10.0,
+      "error": 0.52,
+      "semantic_similarity": 0.854,
+      "keyword_coverage": 0.2571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6856",
+      "human_score": 6.28,
+      "system_score": 6.53,
+      "max_score": 10.0,
+      "error": 0.25,
+      "semantic_similarity": 0.7734,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6857",
+      "human_score": 7.75,
+      "system_score": 6.99,
+      "max_score": 10.0,
+      "error": 0.76,
+      "semantic_similarity": 0.8146,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6859",
+      "human_score": 7.12,
+      "system_score": 7.31,
+      "max_score": 10.0,
+      "error": 0.19,
+      "semantic_similarity": 0.8616,
+      "keyword_coverage": 0.2571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6861",
+      "human_score": 6.54,
+      "system_score": 6.76,
+      "max_score": 10.0,
+      "error": 0.22,
+      "semantic_similarity": 0.7931,
+      "keyword_coverage": 0.2,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6863",
+      "human_score": 6.31,
+      "system_score": 7.08,
+      "max_score": 10.0,
+      "error": 0.77,
+      "semantic_similarity": 0.8594,
+      "keyword_coverage": 0.2286,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6864",
+      "human_score": 7.18,
+      "system_score": 6.68,
+      "max_score": 10.0,
+      "error": 0.5,
+      "semantic_similarity": 0.7808,
+      "keyword_coverage": 0.2,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6866",
+      "human_score": 6.76,
+      "system_score": 7.11,
+      "max_score": 10.0,
+      "error": 0.35,
+      "semantic_similarity": 0.8393,
+      "keyword_coverage": 0.2286,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6869",
+      "human_score": 7.61,
+      "system_score": 7.31,
+      "max_score": 10.0,
+      "error": 0.3,
+      "semantic_similarity": 0.8501,
+      "keyword_coverage": 0.2857,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6870",
+      "human_score": 8.88,
+      "system_score": 7.84,
+      "max_score": 10.0,
+      "error": 1.04,
+      "semantic_similarity": 0.9071,
+      "keyword_coverage": 0.3571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6871",
+      "human_score": 7.4,
+      "system_score": 6.98,
+      "max_score": 10.0,
+      "error": 0.42,
+      "semantic_similarity": 0.8354,
+      "keyword_coverage": 0.1857,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6873",
+      "human_score": 3.17,
+      "system_score": 5.38,
+      "max_score": 10.0,
+      "error": 2.21,
+      "semantic_similarity": 0.7275,
+      "keyword_coverage": 0.1286,
+      "coherence_score": 0.4625
+    },
+    {
+      "title": "Prompt3 HW ID 6875",
+      "human_score": 7.47,
+      "system_score": 7.0,
+      "max_score": 10.0,
+      "error": 0.47,
+      "semantic_similarity": 0.834,
+      "keyword_coverage": 0.2,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6876",
+      "human_score": 6.04,
+      "system_score": 5.96,
+      "max_score": 10.0,
+      "error": 0.08,
+      "semantic_similarity": 0.6778,
+      "keyword_coverage": 0.1571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6877",
+      "human_score": 6.09,
+      "system_score": 6.82,
+      "max_score": 10.0,
+      "error": 0.73,
+      "semantic_similarity": 0.8169,
+      "keyword_coverage": 0.2286,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6878",
+      "human_score": 5.98,
+      "system_score": 6.99,
+      "max_score": 10.0,
+      "error": 1.01,
+      "semantic_similarity": 0.8222,
+      "keyword_coverage": 0.2286,
+      "coherence_score": 0.9875
+    },
+    {
+      "title": "Prompt3 HW ID 6880",
+      "human_score": 6.73,
+      "system_score": 6.82,
+      "max_score": 10.0,
+      "error": 0.09,
+      "semantic_similarity": 0.8284,
+      "keyword_coverage": 0.2,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6883",
+      "human_score": 8.42,
+      "system_score": 7.12,
+      "max_score": 10.0,
+      "error": 1.3,
+      "semantic_similarity": 0.8355,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6884",
+      "human_score": 5.93,
+      "system_score": 6.87,
+      "max_score": 10.0,
+      "error": 0.94,
+      "semantic_similarity": 0.8299,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6885",
+      "human_score": 7.91,
+      "system_score": 7.23,
+      "max_score": 10.0,
+      "error": 0.68,
+      "semantic_similarity": 0.8592,
+      "keyword_coverage": 0.2286,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6886",
+      "human_score": 6.72,
+      "system_score": 6.45,
+      "max_score": 10.0,
+      "error": 0.27,
+      "semantic_similarity": 0.76,
+      "keyword_coverage": 0.1571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6887",
+      "human_score": 6.99,
+      "system_score": 7.06,
+      "max_score": 10.0,
+      "error": 0.07,
+      "semantic_similarity": 0.8076,
+      "keyword_coverage": 0.2857,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6888",
+      "human_score": 5.29,
+      "system_score": 6.63,
+      "max_score": 10.0,
+      "error": 1.34,
+      "semantic_similarity": 0.821,
+      "keyword_coverage": 0.1857,
+      "coherence_score": 0.825
+    },
+    {
+      "title": "Prompt3 HW ID 6889",
+      "human_score": 6.78,
+      "system_score": 7.08,
+      "max_score": 10.0,
+      "error": 0.3,
+      "semantic_similarity": 0.8292,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6890",
+      "human_score": 7.45,
+      "system_score": 7.19,
+      "max_score": 10.0,
+      "error": 0.26,
+      "semantic_similarity": 0.8418,
+      "keyword_coverage": 0.2571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6891",
+      "human_score": 6.36,
+      "system_score": 6.79,
+      "max_score": 10.0,
+      "error": 0.43,
+      "semantic_similarity": 0.8046,
+      "keyword_coverage": 0.1857,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6894",
+      "human_score": 5.76,
+      "system_score": 6.56,
+      "max_score": 10.0,
+      "error": 0.8,
+      "semantic_similarity": 0.8033,
+      "keyword_coverage": 0.1571,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6896",
+      "human_score": 5.2,
+      "system_score": 6.17,
+      "max_score": 10.0,
+      "error": 0.97,
+      "semantic_similarity": 0.7562,
+      "keyword_coverage": 0.1143,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6897",
+      "human_score": 5.57,
+      "system_score": 6.47,
+      "max_score": 10.0,
+      "error": 0.9,
+      "semantic_similarity": 0.8014,
+      "keyword_coverage": 0.1857,
+      "coherence_score": 0.8
+    },
+    {
+      "title": "Prompt3 HW ID 6898",
+      "human_score": 6.62,
+      "system_score": 6.83,
+      "max_score": 10.0,
+      "error": 0.21,
+      "semantic_similarity": 0.8042,
+      "keyword_coverage": 0.2,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6899",
+      "human_score": 6.31,
+      "system_score": 6.5,
+      "max_score": 10.0,
+      "error": 0.19,
+      "semantic_similarity": 0.7433,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6902",
+      "human_score": 7.75,
+      "system_score": 7.22,
+      "max_score": 10.0,
+      "error": 0.53,
+      "semantic_similarity": 0.847,
+      "keyword_coverage": 0.2571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6903",
+      "human_score": 6.91,
+      "system_score": 6.72,
+      "max_score": 10.0,
+      "error": 0.19,
+      "semantic_similarity": 0.8051,
+      "keyword_coverage": 0.1571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6904",
+      "human_score": 8.03,
+      "system_score": 7.04,
+      "max_score": 10.0,
+      "error": 0.99,
+      "semantic_similarity": 0.8155,
+      "keyword_coverage": 0.2571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6905",
+      "human_score": 5.66,
+      "system_score": 6.62,
+      "max_score": 10.0,
+      "error": 0.96,
+      "semantic_similarity": 0.801,
+      "keyword_coverage": 0.1857,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6906",
+      "human_score": 7.19,
+      "system_score": 6.65,
+      "max_score": 10.0,
+      "error": 0.54,
+      "semantic_similarity": 0.7627,
+      "keyword_coverage": 0.2286,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6908",
+      "human_score": 7.19,
+      "system_score": 6.77,
+      "max_score": 10.0,
+      "error": 0.42,
+      "semantic_similarity": 0.8071,
+      "keyword_coverage": 0.1714,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6912",
+      "human_score": 6.81,
+      "system_score": 7.16,
+      "max_score": 10.0,
+      "error": 0.35,
+      "semantic_similarity": 0.8686,
+      "keyword_coverage": 0.1857,
+      "coherence_score": 0.9875
+    },
+    {
+      "title": "Prompt3 HW ID 6913",
+      "human_score": 7.13,
+      "system_score": 6.69,
+      "max_score": 10.0,
+      "error": 0.44,
+      "semantic_similarity": 0.7999,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6914",
+      "human_score": 7.47,
+      "system_score": 6.91,
+      "max_score": 10.0,
+      "error": 0.56,
+      "semantic_similarity": 0.8124,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6915",
+      "human_score": 7.16,
+      "system_score": 7.41,
+      "max_score": 10.0,
+      "error": 0.25,
+      "semantic_similarity": 0.8713,
+      "keyword_coverage": 0.2714,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6916",
+      "human_score": 8.03,
+      "system_score": 7.59,
+      "max_score": 10.0,
+      "error": 0.44,
+      "semantic_similarity": 0.9024,
+      "keyword_coverage": 0.2714,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6917",
+      "human_score": 7.55,
+      "system_score": 7.39,
+      "max_score": 10.0,
+      "error": 0.16,
+      "semantic_similarity": 0.8629,
+      "keyword_coverage": 0.2857,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6918",
+      "human_score": 7.89,
+      "system_score": 7.3,
+      "max_score": 10.0,
+      "error": 0.59,
+      "semantic_similarity": 0.8422,
+      "keyword_coverage": 0.3,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6919",
+      "human_score": 6.98,
+      "system_score": 7.3,
+      "max_score": 10.0,
+      "error": 0.32,
+      "semantic_similarity": 0.8422,
+      "keyword_coverage": 0.3,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6924",
+      "human_score": 2.85,
+      "system_score": 3.89,
+      "max_score": 10.0,
+      "error": 1.04,
+      "semantic_similarity": 0.4237,
+      "keyword_coverage": 0.0571,
+      "coherence_score": 0.8
+    },
+    {
+      "title": "Prompt3 HW ID 6928",
+      "human_score": 6.65,
+      "system_score": 7.05,
+      "max_score": 10.0,
+      "error": 0.4,
+      "semantic_similarity": 0.835,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6930",
+      "human_score": 4.22,
+      "system_score": 5.42,
+      "max_score": 10.0,
+      "error": 1.2,
+      "semantic_similarity": 0.6456,
+      "keyword_coverage": 0.1143,
+      "coherence_score": 0.8375
+    },
+    {
+      "title": "Prompt3 HW ID 6932",
+      "human_score": 7.28,
+      "system_score": 6.79,
+      "max_score": 10.0,
+      "error": 0.49,
+      "semantic_similarity": 0.8109,
+      "keyword_coverage": 0.1714,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6933",
+      "human_score": 7.01,
+      "system_score": 6.9,
+      "max_score": 10.0,
+      "error": 0.11,
+      "semantic_similarity": 0.8101,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6934",
+      "human_score": 7.47,
+      "system_score": 7.18,
+      "max_score": 10.0,
+      "error": 0.29,
+      "semantic_similarity": 0.851,
+      "keyword_coverage": 0.2286,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6935",
+      "human_score": 7.47,
+      "system_score": 7.26,
+      "max_score": 10.0,
+      "error": 0.21,
+      "semantic_similarity": 0.8642,
+      "keyword_coverage": 0.2286,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6936",
+      "human_score": 5.87,
+      "system_score": 6.46,
+      "max_score": 10.0,
+      "error": 0.59,
+      "semantic_similarity": 0.7869,
+      "keyword_coverage": 0.1571,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6937",
+      "human_score": 5.97,
+      "system_score": 6.86,
+      "max_score": 10.0,
+      "error": 0.89,
+      "semantic_similarity": 0.822,
+      "keyword_coverage": 0.1714,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6939",
+      "human_score": 7.96,
+      "system_score": 7.38,
+      "max_score": 10.0,
+      "error": 0.58,
+      "semantic_similarity": 0.8612,
+      "keyword_coverage": 0.2857,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6940",
+      "human_score": 6.17,
+      "system_score": 6.96,
+      "max_score": 10.0,
+      "error": 0.79,
+      "semantic_similarity": 0.8334,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6941",
+      "human_score": 4.59,
+      "system_score": 5.89,
+      "max_score": 10.0,
+      "error": 1.3,
+      "semantic_similarity": 0.7444,
+      "keyword_coverage": 0.1714,
+      "coherence_score": 0.6625
+    },
+    {
+      "title": "Prompt3 HW ID 6944",
+      "human_score": 4.63,
+      "system_score": 6.3,
+      "max_score": 10.0,
+      "error": 1.67,
+      "semantic_similarity": 0.76,
+      "keyword_coverage": 0.1571,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6945",
+      "human_score": 8.59,
+      "system_score": 7.41,
+      "max_score": 10.0,
+      "error": 1.18,
+      "semantic_similarity": 0.8421,
+      "keyword_coverage": 0.3429,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6946",
+      "human_score": 6.55,
+      "system_score": 7.0,
+      "max_score": 10.0,
+      "error": 0.45,
+      "semantic_similarity": 0.8452,
+      "keyword_coverage": 0.1714,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6947",
+      "human_score": 8.88,
+      "system_score": 7.24,
+      "max_score": 10.0,
+      "error": 1.64,
+      "semantic_similarity": 0.8369,
+      "keyword_coverage": 0.2857,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6949",
+      "human_score": 7.18,
+      "system_score": 6.53,
+      "max_score": 10.0,
+      "error": 0.65,
+      "semantic_similarity": 0.7621,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6950",
+      "human_score": 7.47,
+      "system_score": 7.08,
+      "max_score": 10.0,
+      "error": 0.39,
+      "semantic_similarity": 0.8345,
+      "keyword_coverage": 0.2286,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6951",
+      "human_score": 6.02,
+      "system_score": 6.79,
+      "max_score": 10.0,
+      "error": 0.77,
+      "semantic_similarity": 0.7931,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6953",
+      "human_score": 7.17,
+      "system_score": 7.46,
+      "max_score": 10.0,
+      "error": 0.29,
+      "semantic_similarity": 0.8927,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6955",
+      "human_score": 7.05,
+      "system_score": 7.31,
+      "max_score": 10.0,
+      "error": 0.26,
+      "semantic_similarity": 0.8618,
+      "keyword_coverage": 0.2571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6956",
+      "human_score": 9.16,
+      "system_score": 7.55,
+      "max_score": 10.0,
+      "error": 1.61,
+      "semantic_similarity": 0.9011,
+      "keyword_coverage": 0.2571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6957",
+      "human_score": 8.03,
+      "system_score": 7.41,
+      "max_score": 10.0,
+      "error": 0.62,
+      "semantic_similarity": 0.883,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6958",
+      "human_score": 5.93,
+      "system_score": 6.44,
+      "max_score": 10.0,
+      "error": 0.51,
+      "semantic_similarity": 0.789,
+      "keyword_coverage": 0.1429,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6959",
+      "human_score": 2.46,
+      "system_score": 3.72,
+      "max_score": 10.0,
+      "error": 1.26,
+      "semantic_similarity": 0.4283,
+      "keyword_coverage": 0.0857,
+      "coherence_score": 0.625
+    },
+    {
+      "title": "Prompt3 HW ID 6960",
+      "human_score": 6.72,
+      "system_score": 6.72,
+      "max_score": 10.0,
+      "error": 0.0,
+      "semantic_similarity": 0.7921,
+      "keyword_coverage": 0.1857,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6961",
+      "human_score": 3.09,
+      "system_score": 5.48,
+      "max_score": 10.0,
+      "error": 2.39,
+      "semantic_similarity": 0.7131,
+      "keyword_coverage": 0.1,
+      "coherence_score": 0.6375
+    },
+    {
+      "title": "Prompt3 HW ID 6962",
+      "human_score": 4.61,
+      "system_score": 5.99,
+      "max_score": 10.0,
+      "error": 1.38,
+      "semantic_similarity": 0.7561,
+      "keyword_coverage": 0.1,
+      "coherence_score": 0.8
+    },
+    {
+      "title": "Prompt3 HW ID 6964",
+      "human_score": 5.33,
+      "system_score": 5.54,
+      "max_score": 10.0,
+      "error": 0.21,
+      "semantic_similarity": 0.6587,
+      "keyword_coverage": 0.1857,
+      "coherence_score": 0.75
+    },
+    {
+      "title": "Prompt3 HW ID 6965",
+      "human_score": 8.88,
+      "system_score": 7.77,
+      "max_score": 10.0,
+      "error": 1.11,
+      "semantic_similarity": 0.8909,
+      "keyword_coverage": 0.3714,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6966",
+      "human_score": 7.12,
+      "system_score": 6.69,
+      "max_score": 10.0,
+      "error": 0.43,
+      "semantic_similarity": 0.7644,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6968",
+      "human_score": 7.45,
+      "system_score": 7.03,
+      "max_score": 10.0,
+      "error": 0.42,
+      "semantic_similarity": 0.8206,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6972",
+      "human_score": 6.9,
+      "system_score": 6.21,
+      "max_score": 10.0,
+      "error": 0.69,
+      "semantic_similarity": 0.7375,
+      "keyword_coverage": 0.1143,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6974",
+      "human_score": 7.47,
+      "system_score": 6.76,
+      "max_score": 10.0,
+      "error": 0.71,
+      "semantic_similarity": 0.7866,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6975",
+      "human_score": 7.62,
+      "system_score": 6.76,
+      "max_score": 10.0,
+      "error": 0.86,
+      "semantic_similarity": 0.7929,
+      "keyword_coverage": 0.2,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6976",
+      "human_score": 5.59,
+      "system_score": 6.39,
+      "max_score": 10.0,
+      "error": 0.8,
+      "semantic_similarity": 0.7561,
+      "keyword_coverage": 0.1429,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6977",
+      "human_score": 5.06,
+      "system_score": 6.45,
+      "max_score": 10.0,
+      "error": 1.39,
+      "semantic_similarity": 0.771,
+      "keyword_coverage": 0.1429,
+      "coherence_score": 0.975
+    },
+    {
+      "title": "Prompt3 HW ID 6978",
+      "human_score": 8.31,
+      "system_score": 7.3,
+      "max_score": 10.0,
+      "error": 1.01,
+      "semantic_similarity": 0.8652,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6979",
+      "human_score": 8.31,
+      "system_score": 7.83,
+      "max_score": 10.0,
+      "error": 0.48,
+      "semantic_similarity": 0.9292,
+      "keyword_coverage": 0.3,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6980",
+      "human_score": 5.06,
+      "system_score": 6.7,
+      "max_score": 10.0,
+      "error": 1.64,
+      "semantic_similarity": 0.8544,
+      "keyword_coverage": 0.1286,
+      "coherence_score": 0.8375
+    },
+    {
+      "title": "Prompt3 HW ID 6981",
+      "human_score": 5.69,
+      "system_score": 6.58,
+      "max_score": 10.0,
+      "error": 0.89,
+      "semantic_similarity": 0.7569,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6982",
+      "human_score": 5.41,
+      "system_score": 6.57,
+      "max_score": 10.0,
+      "error": 1.16,
+      "semantic_similarity": 0.808,
+      "keyword_coverage": 0.1571,
+      "coherence_score": 0.8875
+    },
+    {
+      "title": "Prompt3 HW ID 6983",
+      "human_score": 4.97,
+      "system_score": 6.25,
+      "max_score": 10.0,
+      "error": 1.28,
+      "semantic_similarity": 0.7678,
+      "keyword_coverage": 0.1857,
+      "coherence_score": 0.7875
+    },
+    {
+      "title": "Prompt3 HW ID 6984",
+      "human_score": 4.62,
+      "system_score": 6.55,
+      "max_score": 10.0,
+      "error": 1.93,
+      "semantic_similarity": 0.8276,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 0.7
+    },
+    {
+      "title": "Prompt3 HW ID 6985",
+      "human_score": 2.59,
+      "system_score": 2.65,
+      "max_score": 10.0,
+      "error": 0.06,
+      "semantic_similarity": 0.2554,
+      "keyword_coverage": 0.0286,
+      "coherence_score": 0.7
+    },
+    {
+      "title": "Prompt3 HW ID 6988",
+      "human_score": 4.77,
+      "system_score": 5.76,
+      "max_score": 10.0,
+      "error": 0.99,
+      "semantic_similarity": 0.7127,
+      "keyword_coverage": 0.1143,
+      "coherence_score": 0.8
+    },
+    {
+      "title": "Prompt3 HW ID 6989",
+      "human_score": 6.82,
+      "system_score": 7.0,
+      "max_score": 10.0,
+      "error": 0.18,
+      "semantic_similarity": 0.8341,
+      "keyword_coverage": 0.2,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6991",
+      "human_score": 7.47,
+      "system_score": 6.71,
+      "max_score": 10.0,
+      "error": 0.76,
+      "semantic_similarity": 0.7848,
+      "keyword_coverage": 0.2,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6994",
+      "human_score": 6.23,
+      "system_score": 6.59,
+      "max_score": 10.0,
+      "error": 0.36,
+      "semantic_similarity": 0.7844,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 6995",
+      "human_score": 7.85,
+      "system_score": 7.16,
+      "max_score": 10.0,
+      "error": 0.69,
+      "semantic_similarity": 0.8426,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6996",
+      "human_score": 7.75,
+      "system_score": 6.86,
+      "max_score": 10.0,
+      "error": 0.89,
+      "semantic_similarity": 0.7868,
+      "keyword_coverage": 0.2571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6997",
+      "human_score": 6.71,
+      "system_score": 6.96,
+      "max_score": 10.0,
+      "error": 0.25,
+      "semantic_similarity": 0.8334,
+      "keyword_coverage": 0.1857,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 6999",
+      "human_score": 5.44,
+      "system_score": 6.43,
+      "max_score": 10.0,
+      "error": 0.99,
+      "semantic_similarity": 0.8125,
+      "keyword_coverage": 0.1429,
+      "coherence_score": 0.8
+    },
+    {
+      "title": "Prompt3 HW ID 7000",
+      "human_score": 8.03,
+      "system_score": 7.32,
+      "max_score": 10.0,
+      "error": 0.71,
+      "semantic_similarity": 0.8397,
+      "keyword_coverage": 0.3143,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7002",
+      "human_score": 8.31,
+      "system_score": 6.83,
+      "max_score": 10.0,
+      "error": 1.48,
+      "semantic_similarity": 0.8285,
+      "keyword_coverage": 0.1429,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7004",
+      "human_score": 6.45,
+      "system_score": 6.23,
+      "max_score": 10.0,
+      "error": 0.22,
+      "semantic_similarity": 0.7233,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 7006",
+      "human_score": 6.33,
+      "system_score": 6.94,
+      "max_score": 10.0,
+      "error": 0.61,
+      "semantic_similarity": 0.8553,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 0.8
+    },
+    {
+      "title": "Prompt3 HW ID 7007",
+      "human_score": 3.99,
+      "system_score": 5.53,
+      "max_score": 10.0,
+      "error": 1.54,
+      "semantic_similarity": 0.6891,
+      "keyword_coverage": 0.0857,
+      "coherence_score": 0.7875
+    },
+    {
+      "title": "Prompt3 HW ID 7008",
+      "human_score": 7.5,
+      "system_score": 7.35,
+      "max_score": 10.0,
+      "error": 0.15,
+      "semantic_similarity": 0.8678,
+      "keyword_coverage": 0.2571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7009",
+      "human_score": 4.31,
+      "system_score": 6.04,
+      "max_score": 10.0,
+      "error": 1.73,
+      "semantic_similarity": 0.7753,
+      "keyword_coverage": 0.1143,
+      "coherence_score": 0.7375
+    },
+    {
+      "title": "Prompt3 HW ID 7012",
+      "human_score": 7.17,
+      "system_score": 7.03,
+      "max_score": 10.0,
+      "error": 0.14,
+      "semantic_similarity": 0.7958,
+      "keyword_coverage": 0.3,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7013",
+      "human_score": 4.42,
+      "system_score": 5.54,
+      "max_score": 10.0,
+      "error": 1.12,
+      "semantic_similarity": 0.6822,
+      "keyword_coverage": 0.1,
+      "coherence_score": 0.8
+    },
+    {
+      "title": "Prompt3 HW ID 7015",
+      "human_score": 7.52,
+      "system_score": 7.04,
+      "max_score": 10.0,
+      "error": 0.48,
+      "semantic_similarity": 0.8343,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7016",
+      "human_score": 7.29,
+      "system_score": 6.72,
+      "max_score": 10.0,
+      "error": 0.57,
+      "semantic_similarity": 0.7741,
+      "keyword_coverage": 0.2286,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7018",
+      "human_score": 8.31,
+      "system_score": 7.32,
+      "max_score": 10.0,
+      "error": 0.99,
+      "semantic_similarity": 0.8443,
+      "keyword_coverage": 0.3,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7025",
+      "human_score": 8.03,
+      "system_score": 7.49,
+      "max_score": 10.0,
+      "error": 0.54,
+      "semantic_similarity": 0.874,
+      "keyword_coverage": 0.3,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7026",
+      "human_score": 8.59,
+      "system_score": 7.34,
+      "max_score": 10.0,
+      "error": 1.25,
+      "semantic_similarity": 0.8727,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7029",
+      "human_score": 5.98,
+      "system_score": 6.98,
+      "max_score": 10.0,
+      "error": 1.0,
+      "semantic_similarity": 0.8348,
+      "keyword_coverage": 0.2571,
+      "coherence_score": 0.8875
+    },
+    {
+      "title": "Prompt3 HW ID 7033",
+      "human_score": 5.95,
+      "system_score": 6.88,
+      "max_score": 10.0,
+      "error": 0.93,
+      "semantic_similarity": 0.8475,
+      "keyword_coverage": 0.1714,
+      "coherence_score": 0.9125
+    },
+    {
+      "title": "Prompt3 HW ID 7037",
+      "human_score": 8.88,
+      "system_score": 7.6,
+      "max_score": 10.0,
+      "error": 1.28,
+      "semantic_similarity": 0.91,
+      "keyword_coverage": 0.2571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7038",
+      "human_score": 7.24,
+      "system_score": 7.06,
+      "max_score": 10.0,
+      "error": 0.18,
+      "semantic_similarity": 0.8143,
+      "keyword_coverage": 0.2714,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7039",
+      "human_score": 6.9,
+      "system_score": 6.69,
+      "max_score": 10.0,
+      "error": 0.21,
+      "semantic_similarity": 0.793,
+      "keyword_coverage": 0.1714,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7040",
+      "human_score": 8.31,
+      "system_score": 7.06,
+      "max_score": 10.0,
+      "error": 1.25,
+      "semantic_similarity": 0.7894,
+      "keyword_coverage": 0.3286,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7041",
+      "human_score": 7.18,
+      "system_score": 6.47,
+      "max_score": 10.0,
+      "error": 0.71,
+      "semantic_similarity": 0.7866,
+      "keyword_coverage": 0.1,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7042",
+      "human_score": 4.9,
+      "system_score": 6.01,
+      "max_score": 10.0,
+      "error": 1.11,
+      "semantic_similarity": 0.7318,
+      "keyword_coverage": 0.1286,
+      "coherence_score": 0.8625
+    },
+    {
+      "title": "Prompt3 HW ID 7044",
+      "human_score": 8.14,
+      "system_score": 7.17,
+      "max_score": 10.0,
+      "error": 0.97,
+      "semantic_similarity": 0.8202,
+      "keyword_coverage": 0.3,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7046",
+      "human_score": 6.26,
+      "system_score": 6.64,
+      "max_score": 10.0,
+      "error": 0.38,
+      "semantic_similarity": 0.7731,
+      "keyword_coverage": 0.2,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7047",
+      "human_score": 4.51,
+      "system_score": 6.15,
+      "max_score": 10.0,
+      "error": 1.64,
+      "semantic_similarity": 0.7788,
+      "keyword_coverage": 0.1429,
+      "coherence_score": 0.75
+    },
+    {
+      "title": "Prompt3 HW ID 7048",
+      "human_score": 7.96,
+      "system_score": 7.26,
+      "max_score": 10.0,
+      "error": 0.7,
+      "semantic_similarity": 0.8469,
+      "keyword_coverage": 0.2714,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7049",
+      "human_score": 7.43,
+      "system_score": 7.2,
+      "max_score": 10.0,
+      "error": 0.23,
+      "semantic_similarity": 0.8432,
+      "keyword_coverage": 0.2571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7072",
+      "human_score": 8.03,
+      "system_score": 7.7,
+      "max_score": 10.0,
+      "error": 0.33,
+      "semantic_similarity": 0.9032,
+      "keyword_coverage": 0.3143,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7079",
+      "human_score": 7.65,
+      "system_score": 6.99,
+      "max_score": 10.0,
+      "error": 0.66,
+      "semantic_similarity": 0.8071,
+      "keyword_coverage": 0.2571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7080",
+      "human_score": 5.85,
+      "system_score": 6.7,
+      "max_score": 10.0,
+      "error": 0.85,
+      "semantic_similarity": 0.8053,
+      "keyword_coverage": 0.1714,
+      "coherence_score": 0.9625
+    },
+    {
+      "title": "Prompt3 HW ID 7081",
+      "human_score": 6.36,
+      "system_score": 7.11,
+      "max_score": 10.0,
+      "error": 0.75,
+      "semantic_similarity": 0.8369,
+      "keyword_coverage": 0.2429,
+      "coherence_score": 0.9875
+    },
+    {
+      "title": "Prompt3 HW ID 7082",
+      "human_score": 5.56,
+      "system_score": 6.72,
+      "max_score": 10.0,
+      "error": 1.16,
+      "semantic_similarity": 0.82,
+      "keyword_coverage": 0.1429,
+      "coherence_score": 0.9625
+    },
+    {
+      "title": "Prompt3 HW ID 7083",
+      "human_score": 5.68,
+      "system_score": 6.48,
+      "max_score": 10.0,
+      "error": 0.8,
+      "semantic_similarity": 0.768,
+      "keyword_coverage": 0.1571,
+      "coherence_score": 0.9875
+    },
+    {
+      "title": "Prompt3 HW ID 7084",
+      "human_score": 5.47,
+      "system_score": 6.66,
+      "max_score": 10.0,
+      "error": 1.19,
+      "semantic_similarity": 0.8011,
+      "keyword_coverage": 0.1429,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7085",
+      "human_score": 5.46,
+      "system_score": 5.86,
+      "max_score": 10.0,
+      "error": 0.4,
+      "semantic_similarity": 0.6824,
+      "keyword_coverage": 0.1286,
+      "coherence_score": 0.9625
+    },
+    {
+      "title": "Prompt3 HW ID 7151",
+      "human_score": 5.52,
+      "system_score": 6.58,
+      "max_score": 10.0,
+      "error": 1.06,
+      "semantic_similarity": 0.8038,
+      "keyword_coverage": 0.1857,
+      "coherence_score": 0.8625
+    },
+    {
+      "title": "Prompt3 HW ID 7152",
+      "human_score": 7.75,
+      "system_score": 7.2,
+      "max_score": 10.0,
+      "error": 0.55,
+      "semantic_similarity": 0.8243,
+      "keyword_coverage": 0.3,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7155",
+      "human_score": 8.59,
+      "system_score": 7.55,
+      "max_score": 10.0,
+      "error": 1.04,
+      "semantic_similarity": 0.8529,
+      "keyword_coverage": 0.3714,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7156",
+      "human_score": 7.24,
+      "system_score": 6.88,
+      "max_score": 10.0,
+      "error": 0.36,
+      "semantic_similarity": 0.8252,
+      "keyword_coverage": 0.1714,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7161",
+      "human_score": 5.02,
+      "system_score": 6.35,
+      "max_score": 10.0,
+      "error": 1.33,
+      "semantic_similarity": 0.762,
+      "keyword_coverage": 0.1714,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 7162",
+      "human_score": 4.61,
+      "system_score": 5.78,
+      "max_score": 10.0,
+      "error": 1.17,
+      "semantic_similarity": 0.7221,
+      "keyword_coverage": 0.1,
+      "coherence_score": 0.8
+    },
+    {
+      "title": "Prompt3 HW ID 7164",
+      "human_score": 7.86,
+      "system_score": 6.98,
+      "max_score": 10.0,
+      "error": 0.88,
+      "semantic_similarity": 0.782,
+      "keyword_coverage": 0.3143,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7165",
+      "human_score": 4.78,
+      "system_score": 6.4,
+      "max_score": 10.0,
+      "error": 1.62,
+      "semantic_similarity": 0.804,
+      "keyword_coverage": 0.1286,
+      "coherence_score": 0.8375
+    },
+    {
+      "title": "Prompt3 HW ID 7166",
+      "human_score": 5.79,
+      "system_score": 6.56,
+      "max_score": 10.0,
+      "error": 0.77,
+      "semantic_similarity": 0.7967,
+      "keyword_coverage": 0.1429,
+      "coherence_score": 0.95
+    },
+    {
+      "title": "Prompt3 HW ID 7168",
+      "human_score": 5.41,
+      "system_score": 6.22,
+      "max_score": 10.0,
+      "error": 0.81,
+      "semantic_similarity": 0.7529,
+      "keyword_coverage": 0.1429,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 7171",
+      "human_score": 6.19,
+      "system_score": 6.71,
+      "max_score": 10.0,
+      "error": 0.52,
+      "semantic_similarity": 0.8059,
+      "keyword_coverage": 0.1714,
+      "coherence_score": 0.9625
+    },
+    {
+      "title": "Prompt3 HW ID 7173",
+      "human_score": 7.46,
+      "system_score": 6.71,
+      "max_score": 10.0,
+      "error": 0.75,
+      "semantic_similarity": 0.8029,
+      "keyword_coverage": 0.1571,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7181",
+      "human_score": 6.71,
+      "system_score": 6.46,
+      "max_score": 10.0,
+      "error": 0.25,
+      "semantic_similarity": 0.7429,
+      "keyword_coverage": 0.2,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7182",
+      "human_score": 5.78,
+      "system_score": 6.74,
+      "max_score": 10.0,
+      "error": 0.96,
+      "semantic_similarity": 0.8244,
+      "keyword_coverage": 0.1857,
+      "coherence_score": 0.8875
+    },
+    {
+      "title": "Prompt3 HW ID 7183",
+      "human_score": 5.93,
+      "system_score": 6.52,
+      "max_score": 10.0,
+      "error": 0.59,
+      "semantic_similarity": 0.7789,
+      "keyword_coverage": 0.2,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 7184",
+      "human_score": 7.93,
+      "system_score": 7.29,
+      "max_score": 10.0,
+      "error": 0.64,
+      "semantic_similarity": 0.8774,
+      "keyword_coverage": 0.2714,
+      "coherence_score": 0.9
+    },
+    {
+      "title": "Prompt3 HW ID 7185",
+      "human_score": 6.49,
+      "system_score": 6.3,
+      "max_score": 10.0,
+      "error": 0.19,
+      "semantic_similarity": 0.7457,
+      "keyword_coverage": 0.1286,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7186",
+      "human_score": 4.82,
+      "system_score": 6.22,
+      "max_score": 10.0,
+      "error": 1.4,
+      "semantic_similarity": 0.7878,
+      "keyword_coverage": 0.1714,
+      "coherence_score": 0.7125
+    },
+    {
+      "title": "Prompt3 HW ID 7187",
+      "human_score": 7.12,
+      "system_score": 7.44,
+      "max_score": 10.0,
+      "error": 0.32,
+      "semantic_similarity": 0.9002,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7191",
+      "human_score": 7.04,
+      "system_score": 7.02,
+      "max_score": 10.0,
+      "error": 0.02,
+      "semantic_similarity": 0.8244,
+      "keyword_coverage": 0.2286,
+      "coherence_score": 1.0
+    },
+    {
+      "title": "Prompt3 HW ID 7192",
+      "human_score": 7.39,
+      "system_score": 6.92,
+      "max_score": 10.0,
+      "error": 0.47,
+      "semantic_similarity": 0.8137,
+      "keyword_coverage": 0.2143,
+      "coherence_score": 1.0
+    }
+  ],
+  "source_csv": "data/evaluation/asap_prompt3_handwritten.csv"
+}

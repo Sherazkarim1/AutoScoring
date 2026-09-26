@@ -26,7 +26,7 @@ from app.services.scoring import get_scoring_service
 REQUIRED_COLUMNS = {"model_answer", "student_answer", "human_score"}
 
 
-def load_dataset(path: Path) -> list[dict]:
+def load_dataset(path: Path, subject_filter: str | None, rescale_factor: float) -> list[dict]:
     with path.open(newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         if not reader.fieldnames:
@@ -41,20 +41,24 @@ def load_dataset(path: Path) -> list[dict]:
             model_answer = (row.get("model_answer") or "").strip()
             student_answer = (row.get("student_answer") or "").strip()
             human_raw = (row.get("human_score") or "").strip()
+            title = (row.get("title") or f"Row {index}").strip()
+            
+            if subject_filter and subject_filter.lower() != (row.get("subject") or "").strip().lower():
+                continue # Skip if subject doesn't match filter
 
             if not model_answer or not student_answer or not human_raw:
                 print(f"Warning: skipping row {index} (missing required values)", file=sys.stderr)
                 continue
 
             try:
-                human_score = float(human_raw)
+                human_score = float(human_raw) * rescale_factor
                 max_score = float((row.get("max_score") or "10").strip())
             except ValueError as exc:
                 raise ValueError(f"Invalid numeric value on row {index}") from exc
 
             rows.append(
                 {
-                    "title": (row.get("title") or f"Row {index}").strip(),
+                    "title": title,
                     "model_answer": model_answer,
                     "student_answer": student_answer,
                     "human_score": human_score,
@@ -122,6 +126,18 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Evaluate AutoScoring vs human scores")
     parser.add_argument("csv_path", type=Path, help="Path to evaluation CSV file")
     parser.add_argument(
+        "--subject",
+        type=str,
+        default=None,
+        help="Optional: Filter evaluation to a specific subject (case-insensitive)",
+    )
+    parser.add_argument(
+        "--rescale",
+        type=float,
+        default=1.0,
+        help="Optional: Rescale human_score by this factor (e.g., 10/3 for 0-3 scale to 0-10)",
+    )
+    parser.add_argument(
         "--output",
         type=Path,
         default=None,
@@ -134,7 +150,10 @@ def main() -> int:
         return 1
 
     try:
-        rows = load_dataset(args.csv_path)
+        rows = load_dataset(args.csv_path, args.subject, args.rescale)
+        if not rows:
+            print("No valid rows found after filtering. Exiting.", file=sys.stderr)
+            return 0
         metrics, details = run_evaluation(rows)
         print_report(metrics, details)
 
